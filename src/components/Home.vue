@@ -1,18 +1,17 @@
 <template>
   <div>
-    <header></header>
+    <header/>
     <h1>my Home</h1>
-    <h2>{{ msg }}</h2>
   </div>
 </template>
 
 <script>
-import Header from './Header'
+import Header from '@/components/Header'
 
 export default {
   name: 'Home',
   components: {
-    'Header': Header
+    Header
   },
   data () {
     return {

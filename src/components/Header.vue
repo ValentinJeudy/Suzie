@@ -7,12 +7,7 @@
 
 <script>
 export default {
-  name: 'Header',
-  data () {
-    return {
-      yolo: 'My header here'
-    }
-  }
+  name: 'Header'
 }
 </script>
 
