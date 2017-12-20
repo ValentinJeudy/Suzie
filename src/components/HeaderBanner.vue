@@ -38,6 +38,7 @@ export default {
   header {
     height: 5rem;
     padding: 1rem 0;
+    background: #fff;
   }
   menu {
     padding: 0;
