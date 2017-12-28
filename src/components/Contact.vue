@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-banner/>
-    <div class="Artist">
+    <div class="Contact">
         <h1>{{ title }}</h1>
     </div>
   </div>
@@ -11,13 +11,13 @@
 import HeaderBanner from '@/components/HeaderBanner'
 
 export default {
-  name: 'Artist',
+  name: 'Contact',
   components: {
     HeaderBanner
   },
   data () {
     return {
-      title: 'Welcome to your Artist Page'
+      title: 'Welcome to Your Contact Page'
     }
   }
 }

@@ -6,13 +6,13 @@
     <menu type="context">
       <ul>
         <li>
-          <a href="">Events</a>
+          <router-link to="/events">Events</router-link>
         </li>
         <li>
-          <a href="">Roster</a>
+          <router-link to="/roster">Roster</router-link>
         </li>
         <li>
-          <a href="">Contact</a>
+          <router-link to="/contact">Contact</router-link>
         </li>
       </ul>
     </menu>
