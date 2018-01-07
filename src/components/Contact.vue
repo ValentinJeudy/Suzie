@@ -1,6 +1,5 @@
 <template>
   <div>
-    <header-banner/>
     <div class="Contact">
         <h1>{{ title }}</h1>
     </div>
@@ -8,12 +7,9 @@
 </template>
 
 <script>
-import HeaderBanner from '@/components/HeaderBanner'
-
 export default {
   name: 'Contact',
   components: {
-    HeaderBanner
   },
   data () {
     return {

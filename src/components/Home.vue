@@ -1,6 +1,5 @@
 <template>
   <div>
-    <header-banner/>
     <h1>{{ msg }}</h1>
     <!-- <ul id="slider" class="slider">
       <li class="slide active">
@@ -21,12 +20,10 @@
 
 <script>
 // import Header from './Header'
-import HeaderBanner from '@/components/HeaderBanner'
 
 export default {
   name: 'Home',
   components: {
-    HeaderBanner
   },
   mounted: () => {
     // const homeSlide = () => {

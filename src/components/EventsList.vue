@@ -1,6 +1,5 @@
 <template>
   <div>
-    <header-banner/>
     <div class="events">
         <h1>{{ title }}</h1>
     </div>
@@ -8,12 +7,9 @@
 </template>
 
 <script>
-import HeaderBanner from '@/components/HeaderBanner'
-
 export default {
   name: 'EventsList',
   components: {
-    HeaderBanner
   },
   mounted: () => {
 

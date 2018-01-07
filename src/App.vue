@@ -1,12 +1,18 @@
 <template>
   <div id="app">
+    <header-banner/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import HeaderBanner from './components/HeaderBanner'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    HeaderBanner
+  }
 }
 </script>
 
