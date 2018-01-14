@@ -1,13 +1,12 @@
 // app/src/schema.js
 const makeExecutableSchema = require('graphql-tools')
-console.log(makeExecutableSchema.makeExecutableSchema)
 const resolvers = require('./resolvers') // Will be implemented at a later stage.
 
 const typeDefs = `
     type Artist {
       id: ID!                # "!" denotes a required field
       name: String
-      description: String!
+      description: String
     }
 
     # This type specifies the entry points into our API.
