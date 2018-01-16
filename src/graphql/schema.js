@@ -1,10 +1,10 @@
 // app/src/schema.js
-const makeExecutableSchema = require('graphql-tools')
+const makeExecutableSchema = require('graphql-tools').makeExecutableSchema
 const resolvers = require('./resolvers') // Will be implemented at a later stage.
 
 const typeDefs = `
     type Artist {
-      id: ID!                # "!" denotes a required field
+      _id: ID!                # "!" denotes a required field
       name: String
       description: String
     }
@@ -12,15 +12,13 @@ const typeDefs = `
     # This type specifies the entry points into our API.
     type Query {
       artists: [Artist]    # "[]" means this is a list of artists
-      artist(id: ID!): Artist
+      artist(name: String!): Artist
     }
 
     # The mutation root type, used to define all mutations.
     type Mutation {
       # A mutation to add a new artist to the list of artists
-      addArtist(name: String!): Artist
+      addArtist(name: String!, description: String!): Artist
     }
     `
-
-const schema = makeExecutableSchema.makeExecutableSchema({ typeDefs, resolvers })
-module.exports = schema
+module.exports = makeExecutableSchema({ typeDefs, resolvers })
