@@ -1,7 +1,5 @@
 const ArtistModel = require('../mongoose/artist.js')
 
-let nextId = 3
-
 module.exports = {
   Query: {
     artists: (obj, args, context) => {

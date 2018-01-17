@@ -7,11 +7,37 @@
 
 <script>
 import HeaderBanner from './components/HeaderBanner'
+import gql from 'graphql-tag'
+import { dev } from '../config'
 
 export default {
   name: 'app',
   components: {
     HeaderBanner
+  },
+  data () {
+    return {
+
+    }
+  },
+  apollo: {
+    artists: {
+      query: gql`query artists`
+      // variables () {
+      //   return {
+      //     // artists
+      //   }
+      // }
+    }
+  },
+  mounted: () => {
+    console.log(dev.GRAPHQL_URL)
+    // console.log(this)
+    // new Vue({
+    //   apollo: {
+
+    //   }
+    // })
   }
 }
 </script>

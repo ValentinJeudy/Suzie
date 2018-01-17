@@ -8,10 +8,10 @@ const {
 } = require('graphql-server-express')
 const bodyParser = require('body-parser')
 const schema = require('./src/graphql/schema')
-const PORT = 7000
-const MONGO_URL = 'mongodb://localhost:27017/suzie'
+const options = require('./config')
 
-Mongoose.connect(MONGO_URL, {}, () => {
+console.log('options.BDD_URL ===> ', require('util').inspect(options.dev.BDD_URL, {colors: true, depth: 2}))
+Mongoose.connect(options.dev.BDD_URL, {}, () => {
   // Restrict the client-origin for security reasons.
   server.use('*', cors({ origin: 'http://localhost:8000' }))
 
@@ -24,7 +24,7 @@ Mongoose.connect(MONGO_URL, {}, () => {
     endpointURL: '/graphql'
   }))
 
-  server.listen(PORT, () =>
-    console.log(`GraphQL Server is now running on http://localhost:${PORT}`)
+  server.listen(options.dev.SERVER_PORT, () =>
+    console.log(`GraphQL Server is now running on http://localhost:${options.dev.SERVER_PORT}`)
   )
 })
