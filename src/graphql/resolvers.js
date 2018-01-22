@@ -2,8 +2,8 @@ const ArtistModel = require('../mongoose/artist.js')
 
 module.exports = {
   Query: {
-    artists: (obj, args, context) => {
-      return ArtistModel.find()
+    artists: async (obj, args, context) => {
+      return await ArtistModel.find()
     },
     artist: (obj, args, context) => {
       return ArtistModel.findOne({ name: args.name })

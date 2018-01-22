@@ -3,22 +3,24 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import VueApollo from 'vue-apollo'
-// import apolloClient from 'vue-apollo'
+import VueApollo from 'vue-apollo'
+import apolloClient from './graphql/apollo-client'
 
 // Install the vue plugin
 // Vue.use(VueApollo)
 
 Vue.config.productionTip = false
 
-// const apolloProvider = new VueApollo({
-//   defaultClient: apolloClient
-// })
+Vue.use(VueApollo)
+
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  // apolloProvider,
+  apolloProvider,
   router,
   template: '<App/>',
   components: { App }

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    {{artists}}
     <header-banner/>
     <router-view/>
   </div>
@@ -8,7 +9,7 @@
 <script>
 import HeaderBanner from './components/HeaderBanner'
 import gql from 'graphql-tag'
-import { dev } from '../config'
+// import { dev } from '../config'
 
 export default {
   name: 'app',
@@ -17,12 +18,21 @@ export default {
   },
   data () {
     return {
-
+      // artists: 'loulou'
     }
   },
   apollo: {
     artists: {
-      query: gql`query artists`
+      query: gql`{
+        artists {
+          name
+          description
+        }
+      }`,
+      result (artists) {
+        this.artists = artists.data.artists
+        console.log(this.artists)
+      }
       // variables () {
       //   return {
       //     // artists
@@ -31,13 +41,10 @@ export default {
     }
   },
   mounted: () => {
-    console.log(dev.GRAPHQL_URL)
-    // console.log(this)
-    // new Vue({
-    //   apollo: {
-
-    //   }
-    // })
+    // console.log(this.a.apollo.artists)
+    this.artists.forEach((artist) => {
+      console.log('Artiste => ', artist)
+    })
   }
 }
 </script>

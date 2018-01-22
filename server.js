@@ -10,10 +10,9 @@ const bodyParser = require('body-parser')
 const schema = require('./src/graphql/schema')
 const options = require('./config')
 
-console.log('options.BDD_URL ===> ', require('util').inspect(options.dev.BDD_URL, {colors: true, depth: 2}))
 Mongoose.connect(options.dev.BDD_URL, {}, () => {
   // Restrict the client-origin for security reasons.
-  server.use('*', cors({ origin: 'http://localhost:8000' }))
+  server.use('*', cors({ origin: 'http://localhost:8080' }))
 
   server.use('/graphql', bodyParser.json(), graphqlExpress({
     // connect: { mongo },
