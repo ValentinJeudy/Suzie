@@ -5,11 +5,11 @@
         <div class='slide-back'></div>
         <div class='slide-front'></div>
       </li>
-      <li class='slide'>
+      <li class='slide next'>
         <div class='slide-back'></div>
         <div class='slide-front'></div>
       </li>
-      <li class='slide'>
+      <li class='slide previous'>
         <div class='slide-back'></div>
         <div class='slide-front'></div>
       </li>
@@ -29,49 +29,31 @@ export default {
       const slider = document.getElementById('slider')
       const slides = slider.getElementsByClassName('slide')
       const activeSlide = slider.getElementsByClassName('active')
-      const activeBackSlide = activeSlide[0].children[0]
-      const activeFrontSlide = activeSlide[0].children[1]
-      console.log(slider.lastElementChild.style)
+
       setInterval(() => {
+        // Reset classes
+        Array.prototype.forEach.call(slides, s => {
+          s.classList.remove('previous')
+          s.classList.remove('next')
+        })
         if (activeSlide[0].nextElementSibling) {
-
-          // Actives slides leaving the window
-          activeBackSlide.style.left = '100%'
-          activeFrontSlide.style.right = '110%'
-          // New slides commin
-          activeSlide[0].nextElementSibling.children[0].style.left = '0'
-          activeSlide[0].nextElementSibling.children[1].style.right = '10%'
-
-          if (activeSlide[0].previousElementSibling) {
-            activeSlide[0].previousElementSibling.children[0].style.left = '-100%'
-            activeSlide[0].previousElementSibling.children[1].style.right = '-80%'
-          } else {
-            // slider.lastElementChild.style
-            slider.lastElementChild.children[0].style.left = '-100%'
-            slider.lastElementChild.children[1].style.right = '-80%'
-          }
+          activeSlide[0].classList.add('previous')
           activeSlide[0].nextElementSibling.classList.add('active')
           activeSlide[0].classList.remove('active')
+          if (activeSlide[0] === slider.lastElementChild) {
+            slides[0].classList.add('next')
+          } else {
+            activeSlide[0].nextElementSibling.classList.add('next')
+          }
         } else {
-
-          activeBackSlide.style.left = '100%'
-          activeFrontSlide.style.right = '110%'
-
-          slides[0].children[0].style.left = '0'
-          slides[0].children[1].style.right = '10%'
-
-          slides[1].children[0].style.left = '-100%'
-          slides[1].children[1].style.right = '-80%'
-
+          activeSlide[0].classList.add('previous')
           activeSlide[0].classList.remove('active')
           slides[0].classList.add('active')
+          slides[1].classList.add('next')
         }
-        // console.log(activeSlide.nextElementSibling)
-        // if (activeSlide.nextElementSibling) {
-        //   activeSlide[0].classList.remove('active').nextElementSibling[0].classList.add('active')
-        // }
       }, 4000)
     }
+
     homeSlide()
   },
 
@@ -115,20 +97,30 @@ export default {
     bottom: 0;
     right: 0;
     overflow: hidden;
+    &:nth-child(even){
+      .slide-back {
+        background: #FFF;
+      }
+    }
+    &:nth-child(odd){
+      .slide-back {
+        background: #000;
+      }
+    }
     &:first-child{
-      .slide-back,
+      // .slide-back,
       .slide-front {
         background-image: url('../assets/paysage1.jpg');
       }
     }
     &:nth-child(2){
-      .slide-back,
+      // .slide-back,
       .slide-front {
         background-image: url('../assets/paysage2.jpg');
       }
     }
     &:last-child{
-      .slide-back,
+      // .slide-back,
       .slide-front {
         background-image: url('../assets/paysage3.jpg');
       }
@@ -144,31 +136,48 @@ export default {
       left: -100%;
       right: 0;
       top: 0;
-      background-color: rgba(255,255,255,.6);
+      // background-color: rgba(255,255,255,.6);
+      z-index: 0;
       // filter: invert(100%);
-      filter: blur(0.1rem);
+      // filter: blur(0.1rem);
+      // filter: invert(0.1rem);
       // backdrop-filter: blur(1rem);
     }
     .slide-front {
-      z-index: 0;
+      z-index: 1;
       width: 80%;
       height: 70%;
       right: -80%;
       bottom: 15%;
     }
-    // &.active{
-      // .slide-back,
-      // .slide-front {
-      // }
-      // .slide-back {
-      //   left: 0;
-      // }
-      // .slide-front {
-      //   z-index: 2;
-      //   right: 10%;
-      //   // bottom: 15%;
-      // }
-    // }
+    &.previous {
+      .slide-back {
+        left: 100%;
+      }
+      .slide-front {
+        right: 100%;
+      }
+    }
+    &.next {
+      .slide-back {
+        left: -100%;
+        transition: none;
+      }
+      .slide-front {
+        right: -80%;
+        transition: none;
+      }
+    }
+    &.active{
+      .slide-back {
+        left: 0;
+      }
+      .slide-front {
+        z-index: 2;
+        right: 10%;
+        // bottom: 15%;
+      }
+    }
   }
 
 </style>
