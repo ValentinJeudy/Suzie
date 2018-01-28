@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    {{artists}}
     <header-banner/>
     <router-view/>
   </div>
@@ -30,8 +29,8 @@ export default {
         }
       }`,
       result (artists) {
-        this.artists = artists.data.artists
-        console.log(this.artists)
+        // this.artists = artists.data.artists
+        // console.log(this.artists)
       }
       // variables () {
       //   return {
@@ -42,9 +41,9 @@ export default {
   },
   mounted: () => {
     // console.log(this.a.apollo.artists)
-    this.artists.forEach((artist) => {
-      console.log('Artiste => ', artist)
-    })
+    // this.artists.forEach((artist) => {
+    //   console.log('Artiste => ', artist)
+    // })
   }
 }
 </script>
@@ -62,6 +61,7 @@ ul {
 }
 #app {
   /* background: #000; */
+  min-height: 100vh;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
