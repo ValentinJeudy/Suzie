@@ -7,7 +7,7 @@
 
 <script>
 import HeaderBanner from './components/HeaderBanner'
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 // import { dev } from '../config'
 
 export default {
@@ -20,25 +20,25 @@ export default {
       // artists: 'loulou'
     }
   },
-  apollo: {
-    artists: {
-      query: gql`{
-        artists {
-          name
-          description
-        }
-      }`,
-      result (artists) {
-        // this.artists = artists.data.artists
-        // console.log(this.artists)
-      }
-      // variables () {
-      //   return {
-      //     // artists
-      //   }
-      // }
-    }
-  },
+  // apollo: {
+  //   artists: {
+  //     query: gql`{
+  //       artists {
+  //         name
+  //         description
+  //       }
+  //     }`,
+  //     result (artists) {
+  //       // this.artists = artists.data.artists
+  //       // console.log(this.artists)
+  //     }
+  //     // variables () {
+  //     //   return {
+  //     //     // artists
+  //     //   }
+  //     // }
+  //   }
+  // },
   mounted: () => {
     // console.log(this.a.apollo.artists)
     // this.artists.forEach((artist) => {

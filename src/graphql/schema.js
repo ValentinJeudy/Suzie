@@ -7,6 +7,7 @@ const typeDefs = `
       _id: ID!                # "!" denotes a required field
       name: String
       description: String
+      imgPath: String
     }
 
     # This type specifies the entry points into our API.

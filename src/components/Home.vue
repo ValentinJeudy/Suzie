@@ -40,7 +40,7 @@ export default {
           activeSlide[0].classList.add('previous')
           activeSlide[0].nextElementSibling.classList.add('active')
           activeSlide[0].classList.remove('active')
-          if (activeSlide[0] === slider.lastElementChild) {
+          if (activeSlide[0] === slider.lastElementChild) {
             slides[0].classList.add('next')
           } else {
             activeSlide[0].nextElementSibling.classList.add('next')
@@ -110,19 +110,19 @@ export default {
     &:first-child{
       // .slide-back,
       .slide-front {
-        background-image: url('../assets/paysage1.jpg');
+        background-image: url('../assets/uploads/paysage1.jpg');
       }
     }
     &:nth-child(2){
       // .slide-back,
       .slide-front {
-        background-image: url('../assets/paysage2.jpg');
+        background-image: url('../assets/uploads/paysage2.jpg');
       }
     }
     &:last-child{
       // .slide-back,
       .slide-front {
-        background-image: url('../assets/paysage3.jpg');
+        background-image: url('../assets/uploads/paysage3.jpg');
       }
     }
     .slide-back,

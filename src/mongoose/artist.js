@@ -4,7 +4,8 @@ const Mongoose = require('mongoose')
 const ArtistSchema = Mongoose.Schema({
   _id: Number,
   name: String,
-  description: String
+  description: String,
+  imgPath: String
 }, { collection: 'artists' })
 
 module.exports = Mongoose.model('Artist', ArtistSchema)
