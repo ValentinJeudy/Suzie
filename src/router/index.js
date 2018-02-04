@@ -5,6 +5,7 @@ import Roster from '@/components/Roster'
 import Artist from '@/components/Artist'
 import EventsList from '@/components/EventsList'
 import Contact from '@/components/Contact'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/contact',
       name: 'Contact',
       component: Contact
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })
