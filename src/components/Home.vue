@@ -97,16 +97,19 @@ export default {
     bottom: 0;
     right: 0;
     overflow: hidden;
-    &:nth-child(even){
-      .slide-back {
-        background: #FFF;
-      }
-    }
-    &:nth-child(odd){
-      .slide-back {
-        background: #000;
-      }
-    }
+    // &:nth-child(even){
+    //   .slide-back {
+    //     background: #FFF;
+    //   }
+    // }
+    // &:nth-child(odd){
+    //   .slide-back {
+    //     background: #000;
+    //   }
+    // }
+    // &:first-child{
+    //   background: #fff;
+    // }
     &:first-child{
       // .slide-back,
       .slide-front {
