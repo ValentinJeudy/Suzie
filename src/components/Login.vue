@@ -4,10 +4,10 @@
         <h1>Log to your Backoffice !!</h1>
         <form action="">
           <label for="">ID :</label>
-          <input type="text">
+          <input v-model="form.name" type="text">
           <label for="">Password :</label>
-          <input type="text">
-          <button>Go on ==></button>
+          <input v-model="form.password" type="text">
+          <button @click="login">Go on ==></button>
         </form>
     </div>
   </div>
@@ -15,12 +15,20 @@
 
 <script>
 export default {
-  name: 'Artist',
-  components: {
-  },
+  name: 'Login',
   data () {
     return {
-      title: 'Welcome to your Login Page'
+      form: {
+        name: '',
+        password: ''
+      },
+      teub: 'loliteub'
+    }
+  },
+  methods: {
+    login: () => {
+      console.log('DANS LOGIN METHOD')
+      console.log('MY DATA => ', data)
     }
   }
 }
