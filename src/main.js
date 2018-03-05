@@ -6,6 +6,11 @@ import router from './router'
 import VueApollo from 'vue-apollo'
 import apolloClient from './graphql/apollo-client'
 
+// import Home from './components/Home'
+// import Roster from './components/Roster'
+// import Login from './components/Login'
+// import EventsList from './components/EventsList'
+
 // Install the vue plugin
 // Vue.use(VueApollo)
 

@@ -25,6 +25,7 @@ export default {
   components: {
   },
   mounted: () => {
+    console.log('this ===> ', this)
     const homeSlide = () => {
       const slider = document.getElementById('slider')
       const slides = slider.getElementsByClassName('slide')

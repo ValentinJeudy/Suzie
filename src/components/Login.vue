@@ -2,18 +2,20 @@
   <div class="container">
     <div class="Artist">
         <h1>Log to your Backoffice !!</h1>
-        <form action="">
+        <form v-on:submit.prevent="login(form)">
           <label for="">ID :</label>
           <input v-model="form.name" type="text">
           <label for="">Password :</label>
           <input v-model="form.password" type="text">
-          <button @click="login">Go on ==></button>
+          <button Submit>Go on ==></button>
         </form>
     </div>
   </div>
 </template>
 
 <script>
+// import gql from 'graphql-tag'
+
 export default {
   name: 'Login',
   data () {
@@ -21,14 +23,20 @@ export default {
       form: {
         name: '',
         password: ''
-      },
-      teub: 'loliteub'
+      }
     }
   },
+  mounted () {
+    console.log('this.teub ===> ', this.form)
+  },
   methods: {
-    login: () => {
-      console.log('DANS LOGIN METHOD')
-      console.log('MY DATA => ', data)
+    login: (form) => {
+      console.log('this ===> ', this.form)
+      // const user = gql`
+      // user(name: &{form.name})
+      // `
+      // console.log('this ===> ', this)
+      // console.log('MY DATA => ', data)
     }
   }
 }
@@ -59,6 +67,5 @@ form {
     outline: red 2px;
   }
 }
-
 
 </style>

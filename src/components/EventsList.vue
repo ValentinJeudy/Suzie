@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="events">
         <h1>{{ title }}</h1>
     </div>
@@ -11,8 +11,8 @@ export default {
   name: 'EventsList',
   components: {
   },
-  mounted: () => {
-
+  mounted () {
+    console.log('this.$route ===> ', this.$route)
   },
   data () {
     return {

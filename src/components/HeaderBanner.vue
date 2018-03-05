@@ -14,6 +14,9 @@
         <li>
           <router-link to="/contact">Contact</router-link>
         </li>
+        <li>
+          <router-link to="/login">Login</router-link>
+        </li>
       </ul>
     </menu>
   </header>

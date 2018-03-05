@@ -12,6 +12,9 @@ module.exports = {
     },
     users: (obj, args, context) => {
       return UserModel.find()
+    },
+    user: (obj, args, context) => {
+      return UserModel.findOne({ name: args.name })
     }
   },
   Mutation: {

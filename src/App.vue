@@ -11,7 +11,7 @@ import HeaderBanner from './components/HeaderBanner'
 // import { dev } from '../config'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     HeaderBanner
   },
@@ -19,31 +19,6 @@ export default {
     return {
       // artists: 'loulou'
     }
-  },
-  // apollo: {
-  //   artists: {
-  //     query: gql`{
-  //       artists {
-  //         name
-  //         description
-  //       }
-  //     }`,
-  //     result (artists) {
-  //       // this.artists = artists.data.artists
-  //       // console.log(this.artists)
-  //     }
-  //     // variables () {
-  //     //   return {
-  //     //     // artists
-  //     //   }
-  //     // }
-  //   }
-  // },
-  mounted: () => {
-    // console.log(this.a.apollo.artists)
-    // this.artists.forEach((artist) => {
-    //   console.log('Artiste => ', artist)
-    // })
   }
 }
 </script>

@@ -16,11 +16,9 @@
 
 <script>
 import gql from 'graphql-tag'
+
 export default {
   name: 'Roster',
-  components: {
-
-  },
   data () {
     return {
       // artists: []
@@ -47,6 +45,7 @@ export default {
     }
   },
   mounted () {
+    console.log('this ===> ', this)
     const listItems = document.querySelectorAll('.container ul li a')
     // const winHeight = window.innerHeight
     // const firstItem = listItems[4]
