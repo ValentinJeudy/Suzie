@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import gql from 'graphql-tag'
+import gql from 'graphql-tag'
 
 export default {
   name: 'Login',
@@ -26,17 +26,41 @@ export default {
       }
     }
   },
+  // apollo: {
+  //   user: {
+  //     query: gql`query getUser($name: String!){
+  //       user(name: $name){
+  //         name
+  //         password
+  //       }
+  //     }`
+  //   }
+  // },
   mounted () {
-    console.log('this.teub ===> ', this.form)
+    // console.log('this.teub ===> ', this)
   },
   methods: {
-    login: (form) => {
-      console.log('this ===> ', this.form)
+    login (form) {
+      // console.log('this ===> ', form)
+      this.$apollo.query({
+        query: gql`query logUser($name: String!, $password: String!){
+          logUser(name: $name, password: $password){
+            name
+            password
+          }
+        }`,
+        variables: {
+          name: form.name,
+          password: form.password
+        }
+      }).then(res => {
+        console.log('res ===> ', res)
+      })
+      // this.$apollo.queries
+
       // const user = gql`
       // user(name: &{form.name})
       // `
-      // console.log('this ===> ', this)
-      // console.log('MY DATA => ', data)
     }
   }
 }

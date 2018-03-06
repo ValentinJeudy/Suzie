@@ -31,7 +31,7 @@ const typeDefs = `
       artists: [Artist]    # "[]" means this is a list of artists
       artist(name: String!): Artist
       users: [User]
-      user(name: String!): User
+      logUser(name: String!, password: String!): Boolean
     }
 
     # The mutation root type, used to define all mutations.

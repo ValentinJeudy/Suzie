@@ -13,8 +13,17 @@ module.exports = {
     users: (obj, args, context) => {
       return UserModel.find()
     },
-    user: (obj, args, context) => {
-      return UserModel.findOne({ name: args.name })
+    logUser: async (obj, args, context) => {
+      const userBdd = await UserModel.findOne({ name: args.name })
+      const hashedPassword = userBdd.password
+
+      console.log('hashedPassword ===> ', hashedPassword)
+      bcrypt.compare(args.password, hashedPassword, (err, res) => {
+        if (err) {
+          return `Error during comparing passwords : ${err}`
+        }
+        return res
+      })
     }
   },
   Mutation: {
