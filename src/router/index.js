@@ -6,6 +6,7 @@ import Artist from '@/components/Artist'
 import EventsList from '@/components/EventsList'
 import Contact from '@/components/Contact'
 import Login from '@/components/Login'
+import Admin from '@/components/Admin'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
     }
   ]
 })

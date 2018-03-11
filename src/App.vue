@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
 }
@@ -42,5 +42,11 @@ ul {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  .container {
+    padding-top: 7rem;
+    height: calc(100vh - 7rem);
+    width: 100%;
+  }
 }
+
 </style>

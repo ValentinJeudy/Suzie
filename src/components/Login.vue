@@ -23,44 +23,35 @@ export default {
       form: {
         name: '',
         password: ''
-      }
+      },
+      userError: false,
+      pswdError: false
     }
   },
-  // apollo: {
-  //   user: {
-  //     query: gql`query getUser($name: String!){
-  //       user(name: $name){
-  //         name
-  //         password
-  //       }
-  //     }`
-  //   }
-  // },
   mounted () {
     // console.log('this.teub ===> ', this)
   },
   methods: {
     login (form) {
-      // console.log('this ===> ', form)
       this.$apollo.query({
         query: gql`query logUser($name: String!, $password: String!){
           logUser(name: $name, password: $password){
-            name
-            password
+            res
           }
         }`,
         variables: {
           name: form.name,
           password: form.password
         }
-      }).then(res => {
-        console.log('res ===> ', res)
-      })
-      // this.$apollo.queries
+      }).then(response => {
+        const res = res.data.logUser.res
 
-      // const user = gql`
-      // user(name: &{form.name})
-      // `
+        if (res === 'logged') {
+          this.$router.push('/admin')
+        } else if (res === 'bad user') {
+
+        }
+      })
     }
   }
 }
@@ -68,11 +59,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.container {
-  padding-top: 7rem;
-  height: calc(100vh - 7rem);
-  width: 100%;
-}
+
 form {
   width: 30rem;
   margin: 0 auto;

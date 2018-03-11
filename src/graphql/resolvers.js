@@ -8,22 +8,32 @@ module.exports = {
       return await ArtistModel.find()
     },
     artist: (obj, args, context) => {
-      return ArtistModel.findOne({ name: args.name })
+      const res = ArtistModel.findOne({ name: args.name })
+      console.log(' ===> ', require('util').inspect(res, { colors: true, depth: 2 }))
+      return res
     },
     users: (obj, args, context) => {
       return UserModel.find()
     },
     logUser: async (obj, args, context) => {
       const userBdd = await UserModel.findOne({ name: args.name })
-      const hashedPassword = userBdd.password
+      const response = {}
 
-      console.log('hashedPassword ===> ', hashedPassword)
-      bcrypt.compare(args.password, hashedPassword, (err, res) => {
-        if (err) {
-          return `Error during comparing passwords : ${err}`
-        }
-        return res
-      })
+      if (!userBdd) {
+        response.res = 'bad user'
+        return response
+      }
+
+      const hashedPassword = userBdd.password
+      const rightPsw = bcrypt.compareSync(args.password, hashedPassword)
+
+      if (rightPsw) {
+        response.res = 'logged'
+        return response
+      } else {
+        response.res = 'bad password'
+        return response
+      }
     }
   },
   Mutation: {

@@ -15,6 +15,10 @@ const typeDefs = `
       password: String!
     }
 
+    type logRes {
+      res: String!
+    }
+
     # Input types
     input AddArtistInput {
       name: String
@@ -31,7 +35,7 @@ const typeDefs = `
       artists: [Artist]    # "[]" means this is a list of artists
       artist(name: String!): Artist
       users: [User]
-      logUser(name: String!, password: String!): Boolean
+      logUser(name: String!, password: String!): logRes
     }
 
     # The mutation root type, used to define all mutations.

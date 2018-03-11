@@ -25,7 +25,6 @@ export default {
   components: {
   },
   mounted: () => {
-    console.log('this ===> ', this)
     const homeSlide = () => {
       const slider = document.getElementById('slider')
       const slides = slider.getElementsByClassName('slide')
@@ -76,11 +75,11 @@ export default {
     background: #000;
   }
 
-  .container {
-    height: calc(100vh - 7rem);
-    position: relative;
-    top: 7rem;
-  }
+  // .container {
+  //   height: calc(100vh - 7rem);
+  //   position: relative;
+  //   top: 7rem;
+  // }
 
   .slider {
     // position: relative;
