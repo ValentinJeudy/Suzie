@@ -37,10 +37,6 @@ module.exports = {
     }
   },
   Mutation: {
-    addArtist: (obj, args) => {
-      const newArtist = { name: args.input.name, description: args.input.description }
-      return ArtistModel.create(newArtist)
-    },
     addUser: (obj, args) => {
       console.log('args.input.password ===> ', args.input)
 
@@ -50,6 +46,19 @@ module.exports = {
         }
         const newUser = { name: args.input.name, password: hash }
         return UserModel.create(newUser)
+      })
+    },
+    addArtist: (obj, args) => {
+      const newArtist = { name: args.input.name, description: args.input.description }
+      return ArtistModel.create(newArtist)
+    },
+    deleteArtist: (obj, args) => {
+      const name = args.input.name
+
+      ArtistModel.findOne({ name }, (err, artist) => {
+        if (err) throw err
+        artist.remove()
+        return { res: 'removed' }
       })
     }
   }

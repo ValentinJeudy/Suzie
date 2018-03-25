@@ -43,6 +43,8 @@ ul {
   text-align: center;
   color: #2c3e50;
   .container {
+    // display: flex;
+    // flex-direction: row;
     padding-top: 7rem;
     height: calc(100vh - 7rem);
     width: 100%;

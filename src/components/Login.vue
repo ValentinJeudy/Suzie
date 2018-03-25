@@ -44,12 +44,12 @@ export default {
           password: form.password
         }
       }).then(response => {
-        const res = res.data.logUser.res
+        const res = response.data.logUser.res
 
         if (res === 'logged') {
           this.$router.push('/admin')
         } else if (res === 'bad user') {
-
+          this.userError = true
         }
       })
     }

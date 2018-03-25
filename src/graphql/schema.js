@@ -30,6 +30,10 @@ const typeDefs = `
       password: String!
     }
 
+    input deleteArtist {
+      name: String!
+    }
+
     # This type specifies the entry points into our API.
     type Query {
       artists: [Artist]    # "[]" means this is a list of artists
@@ -43,6 +47,7 @@ const typeDefs = `
       # A mutation to add a new artist to the list of artists
       addArtist(input: AddArtistInput!): Artist
       addUser(input: AddUserInput!): User
+      deleteArtist(input: deleteArtist): logRes
     }
     `
 module.exports = makeExecutableSchema({ typeDefs, resolvers })
