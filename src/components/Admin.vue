@@ -4,12 +4,11 @@
         <h1>YOU'RE LOGGED MOFO !!!</h1>
         <div class="artists">
           <ul>
-            <li v-for="artist in artists" class="artist">
-              <span @click="deleteArtist(artist.name)" class="cross"></span>
-              <h3>{{ artist.name }}</h3>
-              <p>{{ artist.description }}</p>
-              <span @click="modify()">modify</span>
-              <div class=""></div>
+            <li
+              is="artist-item"
+              v-for="artist in artists"
+              :artist="artist"
+              class="artist">
             </li>
           </ul>
         </div>
@@ -22,16 +21,19 @@
 
 <script>
 import gql from 'graphql-tag'
+import ArtistItem from './ArtistItem'
 
 export default {
   name: 'Admin',
   components: {
+    ArtistItem
   },
   data () {
     return {
       title: 'Welcome to your Artist Page'
     }
   },
+  props: ['artist'],
   apollo: {
     artists: {
       query: gql`{
@@ -42,12 +44,12 @@ export default {
         }
       }`,
       result (artists) {
-        const artists = artists.data.artists
-        artists.forEach((artist) => {
-          console.log('artist ===> ', artist)
-          artist.showForm = false
-        })
-        this.artists = artists
+        // const artists = artists.data.artists
+        // artists.forEach((artist) => {
+        //   console.log('artist ===> ', artist)
+        //   artist.showForm = false
+        // })
+        this.artists = artists.data.artists
         console.log('this.artists ===> ', this.artists)
       }
       // variables () {
@@ -82,6 +84,9 @@ export default {
     },
     modify () {
       console.log('this ===> ', this)
+    },
+    updateArtist (form) {
+      console.log('form ==> ', form)
     }
   }
 }
@@ -95,7 +100,8 @@ export default {
   }
   .bloc {
     // flex: auto;
-    width: 45%;
+    width: 40%;
+    margin: 0 5%;
   }
   .artist {
     position: relative;
@@ -106,18 +112,5 @@ export default {
     h3 {
       margin: 0 0 1.5rem 0;
     }
-    .cross {
-      position: absolute;
-      display: block;
-      top: 0.5rem;
-      right: 0.5rem;
-      width: 1rem;
-      height: 1rem;
-      background: url('../assets/cross.svg') no-repeat;
-      background-position: center;
-      background-size: 100%;
-    }
   }
-
-
 </style>
