@@ -5,10 +5,10 @@
     <p>{{ artist.description }}</p>
     <!-- <span @click="modify()">modify</span> -->
     <form v-on:submit.prevent="updateArtist(form)">
-      <label for="">name :</label>
-      <input type="text">
-      <label for="">Description</label>
-      <textarea name=""></textarea>
+      <label for="name">name :</label>
+      <input v-model="form.name" name="name" type="text">
+      <label for="description">Description</label>
+      <textarea v-model="form.description" name="description"></textarea>
       <button Submit>Update</button>
     </form>
   </li>
@@ -23,10 +23,6 @@ export default {
   },
   data () {
     return {
-      artist: {
-        name: '',
-        description: ''
-      },
       form: {
         name: '',
         description: ''
@@ -61,8 +57,36 @@ export default {
       console.log('this ===> ', this)
     },
     updateArtist (form) {
-      console.log('form ==> ', form)
+      this.$apollo.mutate({
+        mutation: gql`mutation updateArtist($input: updateArtist!){
+          updateArtist(input: $input){
+            name
+            description
+          }
+        }`,
+        variables: {
+          input: {
+            artist: {
+              name: this.artist.name
+            },
+            newArtist: {
+              name: form.name,
+              description: form.description
+            }
+          }
+        }
+      }).then(response => {
+        console.log('response ===> ', response)
+        console.log('this.form ===> ', this.form)
+        // if (res === 'logged') {
+        //   this.$router.push('/admin')
+        // } else if (res === 'bad user') {
+        //   this.userError = true
+        // }
+      })
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 
 module.exports = {
   Query: {
-    artists: async (obj, args, context) => {
-      return await ArtistModel.find()
+    artists: (obj, args, context) => {
+      return ArtistModel.find()
     },
     artist: (obj, args, context) => {
       const res = ArtistModel.findOne({ name: args.name })
@@ -59,6 +59,26 @@ module.exports = {
         if (err) throw err
         artist.remove()
         return { res: 'removed' }
+      })
+    },
+    updateArtist: (obj, args) => {
+      const artist = { name: args.input.artist.name }
+      const newName = args.input.newArtist.name
+      const newDesc = args.input.newArtist.description
+      const newArtist = {}
+
+      if (newName.length > 0) {
+        newArtist['name'] = newName
+      }
+      if (newDesc.length > 0) {
+        newArtist['description'] = newDesc
+      }
+
+      console.log('newArtist ===> ', newArtist)
+
+      ArtistModel.update(artist, newArtist).then((result) => {
+        console.log('newArtist ===> ', require('util').inspect(newArtist, { colors: true, depth: 2 }))
+        return newArtist
       })
     }
   }

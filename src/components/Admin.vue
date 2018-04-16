@@ -50,7 +50,6 @@ export default {
         //   artist.showForm = false
         // })
         this.artists = artists.data.artists
-        console.log('this.artists ===> ', this.artists)
       }
       // variables () {
       //   return {

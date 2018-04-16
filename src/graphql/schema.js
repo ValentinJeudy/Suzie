@@ -19,6 +19,11 @@ const typeDefs = `
       res: String!
     }
 
+    type ArtistOutput {
+      name: String
+      description: String
+    }
+
     # Input types
     input AddArtistInput {
       name: String
@@ -28,6 +33,15 @@ const typeDefs = `
     input AddUserInput {
       name: String!
       password: String!
+    }
+
+    input FindArtistInput {
+      name: String!
+    }
+
+    input updateArtist {
+      artist: FindArtistInput!
+      newArtist: AddArtistInput!
     }
 
     input deleteArtist {
@@ -47,7 +61,8 @@ const typeDefs = `
       # A mutation to add a new artist to the list of artists
       addArtist(input: AddArtistInput!): Artist
       addUser(input: AddUserInput!): User
-      deleteArtist(input: deleteArtist): logRes
+      deleteArtist(input: FindArtistInput!): logRes
+      updateArtist(input: updateArtist!): ArtistOutput
     }
     `
 module.exports = makeExecutableSchema({ typeDefs, resolvers })
