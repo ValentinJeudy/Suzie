@@ -29,35 +29,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5rem;
-    padding: 1rem 0;
-    background: #000;
-    z-index: 10;
-  }
-  menu {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 0;
-    padding: 0;
-    margin: 0 2rem 0 0;
-    line-height: 5rem;
-    a {
-      color: #fff;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    li {
-      display: inline-block;
-      margin: 0 1.5rem;
-    }
-  }
-  }
-</style>
+<style src="./scss/HeaderBanner.scss" scoped lang="scss"></style>

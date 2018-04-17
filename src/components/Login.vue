@@ -44,6 +44,7 @@ export default {
           password: form.password
         }
       }).then(response => {
+        console.log('response ===> ', response)
         const res = response.data.logUser.res
 
         if (res === 'logged') {
@@ -58,25 +59,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
-form {
-  width: 30rem;
-  margin: 0 auto;
-  text-align: left;
-  label {
-  display: inline-block;
-  width: 100%;
-  padding-left: .5rem;
-  margin: .4rem 0;
-  }
-  input {
-    width: 100%;
-    height: 1.5rem;
-    margin-bottom: 1rem;
-    padding-left: .4rem;
-    outline: red 2px;
-  }
-}
-
-</style>
+<style src="./scss/Login.scss" scoped lang="scss"></style>

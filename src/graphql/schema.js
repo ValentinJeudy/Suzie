@@ -15,13 +15,13 @@ const typeDefs = `
       password: String!
     }
 
-    type logRes {
+    type LogRes {
       res: String!
     }
 
     type ArtistOutput {
-      name: String
-      description: String
+      name: String!
+      description: String!
     }
 
     # Input types
@@ -39,7 +39,7 @@ const typeDefs = `
       name: String!
     }
 
-    input updateArtist {
+    input UpdateArtistInput {
       artist: FindArtistInput!
       newArtist: AddArtistInput!
     }
@@ -53,7 +53,7 @@ const typeDefs = `
       artists: [Artist]    # "[]" means this is a list of artists
       artist(name: String!): Artist
       users: [User]
-      logUser(name: String!, password: String!): logRes
+      logUser(name: String!, password: String!): LogRes
     }
 
     # The mutation root type, used to define all mutations.
@@ -61,8 +61,8 @@ const typeDefs = `
       # A mutation to add a new artist to the list of artists
       addArtist(input: AddArtistInput!): Artist
       addUser(input: AddUserInput!): User
-      deleteArtist(input: FindArtistInput!): logRes
-      updateArtist(input: updateArtist!): ArtistOutput
+      deleteArtist(input: FindArtistInput!): LogRes
+      updateArtist(input: UpdateArtistInput!): ArtistOutput
     }
     `
 module.exports = makeExecutableSchema({ typeDefs, resolvers })

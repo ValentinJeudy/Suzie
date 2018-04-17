@@ -92,24 +92,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-  .flex {
-    display: flex;
-    flex-direction: row;
-  }
-  .bloc {
-    // flex: auto;
-    width: 40%;
-    margin: 0 5%;
-  }
-  .artist {
-    position: relative;
-    list-style: none;
-    p, h3 {
-      text-decoration: none;
-    }
-    h3 {
-      margin: 0 0 1.5rem 0;
-    }
-  }
-</style>
+<style src="./scss/Admin.scss" scoped lang='scss'></style>

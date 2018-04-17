@@ -33,7 +33,7 @@ export default {
   methods: {
     deleteArtist (name) {
       this.$apollo.mutate({
-        mutation: gql`mutation deleteArtist($input: deleteArtist!){
+        mutation: gql`mutation deleteArtist($input: FindArtistInput!){
           deleteArtist(input: $input){
             res
           }
@@ -58,7 +58,7 @@ export default {
     },
     updateArtist (form) {
       this.$apollo.mutate({
-        mutation: gql`mutation updateArtist($input: updateArtist!){
+        mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
           updateArtist(input: $input){
             name
             description
@@ -74,15 +74,21 @@ export default {
               description: form.description
             }
           }
+        },
+        update: (store) => {
+          console.log('store ===> ', form)
+          const data = store.data.data
+          for (const artist in data) {
+            if (artist.includes('ROOT_QUERY.artists')) {
+              console.log('artist ===> ', artist)
+            }
+          }
+          // // console.log('store ===> ', store.data.data['ROOT_QUERY.artists'])
         }
-      }).then(response => {
-        console.log('response ===> ', response)
-        console.log('this.form ===> ', this.form)
-        // if (res === 'logged') {
-        //   this.$router.push('/admin')
-        // } else if (res === 'bad user') {
-        //   this.userError = true
-        // }
+      }).then(data => {
+        console.log('data ===> ', data)
+      }).catch((err) => {
+        console.error(err)
       })
     }
   },
@@ -92,36 +98,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-  .cross {
-    position: absolute;
-    cursor: pointer;
-    display: block;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 1rem;
-    height: 1rem;
-    background: url('../assets/cross.svg') no-repeat;
-    background-position: center;
-    background-size: 100%;
-  }
-  form {
-    padding: 0 4rem;
-    text-align: left;
-    label {
-      display: inline-block;
-    }
-    input, textarea {
-      display: block;
-      width: 100%;
-      margin: 1.5rem auto;
-    }
-    input {
-      height: 2rem;
-    }
-    textarea {
-      min-height: 4rem;
-    }
-  }
-
-</style>
+<style src="./scss/ArtistItem.scss" scoped lang='scss'></style>

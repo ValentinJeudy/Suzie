@@ -78,7 +78,10 @@ module.exports = {
 
       ArtistModel.update(artist, newArtist).then((result) => {
         console.log('newArtist ===> ', require('util').inspect(newArtist, { colors: true, depth: 2 }))
-        return newArtist
+        return {
+          name: 'name',
+          description: 'description'
+        }
       })
     }
   }
