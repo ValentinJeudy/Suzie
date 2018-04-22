@@ -19,11 +19,6 @@ const typeDefs = `
       res: String!
     }
 
-    type ArtistOutput {
-      name: String!
-      description: String!
-    }
-
     # Input types
     input AddArtistInput {
       name: String
@@ -62,7 +57,7 @@ const typeDefs = `
       addArtist(input: AddArtistInput!): Artist
       addUser(input: AddUserInput!): User
       deleteArtist(input: FindArtistInput!): LogRes
-      updateArtist(input: UpdateArtistInput!): ArtistOutput
+      updateArtist(input: UpdateArtistInput!): Artist
     }
     `
 module.exports = makeExecutableSchema({ typeDefs, resolvers })

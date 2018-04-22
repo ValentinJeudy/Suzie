@@ -55,13 +55,12 @@ module.exports = {
     deleteArtist: (obj, args) => {
       const name = args.input.name
 
-      ArtistModel.findOne({ name }, (err, artist) => {
+      ArtistModel.findOneAndRemove({ name }, (err, doc) => {
         if (err) throw err
-        artist.remove()
-        return { res: 'removed' }
       })
+      return { res: 'removed' }
     },
-    updateArtist: (obj, args) => {
+    updateArtist: async (obj, args) => {
       const artist = { name: args.input.artist.name }
       const newName = args.input.newArtist.name
       const newDesc = args.input.newArtist.description
@@ -74,15 +73,8 @@ module.exports = {
         newArtist['description'] = newDesc
       }
 
-      console.log('newArtist ===> ', newArtist)
-
-      ArtistModel.update(artist, newArtist).then((result) => {
-        console.log('newArtist ===> ', require('util').inspect(newArtist, { colors: true, depth: 2 }))
-        return {
-          name: 'name',
-          description: 'description'
-        }
-      })
+      await ArtistModel.findOneAndUpdate(artist, newArtist)
+      return newArtist
     }
   }
 }
