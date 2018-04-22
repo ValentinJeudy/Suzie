@@ -80,7 +80,10 @@ export default {
           const data = store.data.data
           for (const artist in data) {
             if (artist.includes('ROOT_QUERY.artists')) {
-              console.log('artist ===> ', artist)
+              console.log('artist ===> ', data[artist])
+              data[artist].name = form.name
+              data[artist].description = form.description
+              console.log('newArtist ===> ', data[artist])
             }
           }
           // // console.log('store ===> ', store.data.data['ROOT_QUERY.artists'])
@@ -98,4 +101,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="./scss/ArtistItem.scss" scoped lang='scss'></style>
+<style src="../assets/scss/ArtistItem.scss" scoped lang='scss'></style>

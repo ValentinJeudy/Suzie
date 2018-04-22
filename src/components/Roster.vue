@@ -112,4 +112,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="./scss/Roster.scss" scoped lang="scss"></style>
+<style src="../assets/scss/Roster.scss" scoped lang="scss"></style>

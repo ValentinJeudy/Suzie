@@ -92,4 +92,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="./scss/Admin.scss" scoped lang='scss'></style>
+<style src="../assets/scss/Admin.scss" scoped lang='scss'></style>

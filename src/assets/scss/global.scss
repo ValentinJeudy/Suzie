@@ -1,0 +1,49 @@
+// global variables
+
+// Breakpoints
+
+$xxs: 360px !default;
+$xs: 600px !default;
+$sm: 840px !default;
+$md: 960px !default;
+$lg: 1280px !default;
+$xl: 1920px !default;
+
+
+@mixin breakpoint($width, $direction: up) {
+  $nextBreakpoint: 9999px;
+  @if $direction == down {
+    @media (max-width: $width - 1) {
+      @content;
+    }
+  }
+  @else if $direction == only {
+    @if $width == $xxs {
+      $width: 0;
+      $nextBreakpoint: $xs;
+    }
+    @else if $width == $xs {
+      $nextBreakpoint: $sm;
+    }
+    @else if $width == $sm {
+      $nextBreakpoint: $md;
+    }
+    @else if $width == $md {
+      $nextBreakpoint: $lg;
+    }
+    @else if $width == $lg {
+      $nextBreakpoint: $xl;
+    }
+    @else if $width == $xl {
+      @warn "you don't need to set <only> for the biggest resolution";
+    }
+    @media screen and (min-width: $width) and (max-width: $nextBreakpoint - 1) {
+      @content;
+    }
+  }
+  @else { // if $direction is empty or equal to up or anything else
+    @media screen and (min-width: $width) {
+      @content;
+    }
+  }
+}

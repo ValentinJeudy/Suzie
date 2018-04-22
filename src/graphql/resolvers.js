@@ -58,6 +58,7 @@ module.exports = {
       ArtistModel.findOneAndRemove({ name }, (err, doc) => {
         if (err) throw err
       })
+
       return { res: 'removed' }
     },
     updateArtist: async (obj, args) => {
