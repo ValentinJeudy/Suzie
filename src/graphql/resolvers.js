@@ -50,6 +50,7 @@ module.exports = {
     },
     addArtist: (obj, args) => {
       const newArtist = { name: args.input.name, description: args.input.description }
+      console.log('newArtist ===> ', require('util').inspect(newArtist, { colors: true, depth: 2 }))
       return ArtistModel.create(newArtist)
     },
     deleteArtist: (obj, args) => {

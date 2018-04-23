@@ -10,6 +10,16 @@
               :artist="artist"
               class="artist">
             </li>
+            <div class="add-artist">
+            <a @click="openFormArtist" class="btn">Add a new Artist</a>
+              <form v-if="artistFormOpened" v-on:submit.prevent="addNewArtist(newArtistForm)">
+                <label for="name">name :</label>
+                <input v-model="newArtistForm.name" name="name" type="text">
+                <label for="description">Description</label>
+                <textarea v-model="newArtistForm.description" name="description"></textarea>
+                <button Submit>Update</button>
+              </form>
+            </div>
           </ul>
         </div>
     </div>
@@ -30,7 +40,11 @@ export default {
   },
   data () {
     return {
-      title: 'Welcome to your Artist Page'
+      newArtistForm: {
+        name: '',
+        description: ''
+      },
+      artistFormOpened: false
     }
   },
   props: ['artist'],
@@ -59,33 +73,33 @@ export default {
     }
   },
   methods: {
-    deleteArtist (name) {
+    modify () {
+      console.log('this ===> ', this)
+    },
+    addNewArtist (form) {
+      console.log(form)
       this.$apollo.mutate({
-        mutation: gql`mutation deleteArtist($input: deleteArtist!){
+        mutation: gql`mutation addArtist($input: AddArtistInput!){
           deleteArtist(input: $input){
-            res
+            name
+            description
           }
         }`,
         variables: {
           input: {
-            name: name
+            name: form.name
           }
         }
       }).then(response => {
         console.log('response ===> ', response)
-
-        // if (res === 'logged') {
-        //   this.$router.push('/admin')
-        // } else if (res === 'bad user') {
-        //   this.userError = true
-        // }
       })
     },
-    modify () {
-      console.log('this ===> ', this)
-    },
-    updateArtist (form) {
-      console.log('form ==> ', form)
+    openFormArtist () {
+      if (this.artistFormOpened) {
+        this.artistFormOpened = false
+      } else {
+        this.artistFormOpened = true
+      }
     }
   }
 }

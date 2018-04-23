@@ -1,0 +1,79 @@
+@import './global.scss';
+
+body {
+  margin: 0;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+ul {
+  padding: 0;
+}
+#app {
+  /* background: #000; */
+  min-height: 100vh;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  .container {
+    // display: flex;
+    // flex-direction: row;
+    padding-top: 7rem;
+    height: calc(100vh - 7rem);
+    width: 100%;
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: row;
+    @include breakpoint($md, down) {
+      flex-direction: column;
+    }
+  }
+  .bloc {
+    // flex: auto;
+    width: 40%;
+    margin: 0 5%;
+    @include breakpoint($md, down) {
+      width: 80%;
+      margin: 0 10%;
+    }
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 1rem 1.5rem;
+    background: #fff;
+    border: solid 2px #000;
+    cursor: pointer;
+  }
+
+  form {
+    margin: 1.5rem 0;
+    padding: 0 4rem;
+    text-align: left;
+    label {
+      display: inline-block;
+    }
+    input, textarea {
+      display: block;
+      width: 100%;
+      margin: 1.5rem auto;
+    }
+    input {
+      height: 2rem;
+    }
+    textarea {
+      min-height: 4rem;
+    }
+    button {
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      background: #fff;
+      border: solid 2px #000;
+      font-size: 1.2rem;
+    }
+  }
+}

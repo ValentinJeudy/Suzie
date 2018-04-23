@@ -1,10 +1,12 @@
 <template>
   <li class="artist">
     <span @click="deleteArtist(artist.name)" class="cross"></span>
-    <h3>{{ artist.name }}</h3>
-    <p>{{ artist.description }}</p>
-    <!-- <span @click="modify()">modify</span> -->
-    <form v-on:submit.prevent="updateArtist(form)">
+    <div class="artist-content">
+      <h3>{{ artist.name }}</h3>
+      <p>{{ artist.description }}</p>
+    </div>
+    <span class="open-form" @click="modify()">modify</span>
+    <form v-if="formOpened" v-on:submit.prevent="updateArtist(form)">
       <label for="name">name :</label>
       <input v-model="form.name" name="name" type="text">
       <label for="description">Description</label>
@@ -26,7 +28,8 @@ export default {
       form: {
         name: '',
         description: ''
-      }
+      },
+      formOpened: false
     }
   },
   props: ['artist'],
@@ -54,7 +57,11 @@ export default {
       })
     },
     modify () {
-      console.log('this ===> ', this)
+      if (this.formOpened) {
+        this.formOpened = false
+      } else {
+        this.formOpened = true
+      }
     },
     updateArtist (form) {
       this.$apollo.mutate({
