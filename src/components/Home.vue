@@ -30,6 +30,11 @@ export default {
       const slides = slider.getElementsByClassName('slide')
       const activeSlide = slider.getElementsByClassName('active')
 
+      // Set backgrounf-color of the first item
+      slides[0].querySelector('.slide-back').style.backgroundColor = '#000'
+
+      window.onbeforeunload = console.log('=============> gniiaaaaa <================')
+
       setInterval(() => {
         // Reset classes
         Array.prototype.forEach.call(slides, s => {
@@ -37,6 +42,15 @@ export default {
           s.classList.remove('next')
         })
         if (activeSlide[0].nextElementSibling) {
+          const currentSlideBack = activeSlide[0].querySelector('.slide-back')
+          const nextSlideBack = activeSlide[0].nextElementSibling.querySelector('.slide-back')
+
+          if (currentSlideBack.style.backgroundColor === 'rgb(0, 0, 0)') {
+            nextSlideBack.style.backgroundColor = '#fff'
+          } else {
+            nextSlideBack.style.backgroundColor = '#000'
+          }
+
           activeSlide[0].classList.add('previous')
           activeSlide[0].nextElementSibling.classList.add('active')
           activeSlide[0].classList.remove('active')
@@ -46,6 +60,14 @@ export default {
             activeSlide[0].nextElementSibling.classList.add('next')
           }
         } else {
+          const currentSlideBack = activeSlide[0].querySelector('.slide-back')
+
+          if (currentSlideBack.style.backgroundColor === 'rgb(0, 0, 0)') {
+            slides[0].querySelector('.slide-back').style.backgroundColor = '#fff'
+          } else {
+            slides[0].querySelector('.slide-back').style.backgroundColor = '#000'
+          }
+
           activeSlide[0].classList.add('previous')
           activeSlide[0].classList.remove('active')
           slides[0].classList.add('active')
@@ -56,11 +78,8 @@ export default {
 
     homeSlide()
   },
-
-  data () {
-    return {
-      msg: 'Welcome to Your Homepage'
-    }
+  destroyed () {
+    console.log('=============> HOME DESTROYED LOL <================')
   }
 }
 </script>

@@ -57,11 +57,7 @@ export default {
       })
     },
     modify () {
-      if (this.formOpened) {
-        this.formOpened = false
-      } else {
-        this.formOpened = true
-      }
+      this.formOpened ? this.formOpened = false : this.formOpened = true
     },
     updateArtist (form) {
       this.$apollo.mutate({
