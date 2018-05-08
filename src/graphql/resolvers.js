@@ -1,6 +1,17 @@
 const ArtistModel = require('../mongoose/artist.js')
 const UserModel = require('../mongoose/user.js')
 const bcrypt = require('bcrypt')
+const session = require('express-session')
+const express = require('express')
+const app = express()
+const MongoDBStore = require('connect-mongodb-session')(session)
+const options = require('../../config')
+
+// const store = new MongoDBStore({
+//   uri: options.dev.BDD_URL,
+//   databaseName: 'suzie',
+//   collection: 'sessions'
+// })
 
 module.exports = {
   Query: {
@@ -9,7 +20,6 @@ module.exports = {
     },
     artist: (obj, args, context) => {
       const res = ArtistModel.findOne({ name: args.name })
-      console.log(' ===> ', require('util').inspect(res, { colors: true, depth: 2 }))
       return res
     },
     users: (obj, args, context) => {
@@ -29,6 +39,22 @@ module.exports = {
 
       if (rightPsw) {
         response.res = 'logged'
+        console.log('=============> BEFORE APP USE <================')
+
+        console.log('=============> YOU ARE LOGGED <================')
+        app.use(session({
+          secret: 'hum pk pas lol',
+          store: new MongoDBStore({
+            uri: options.dev.BDD_URL,
+            databaseName: 'suzie',
+            collection: 'sessions'
+          }),
+          resave: false,
+          saveUninitialized: true,
+          cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+          }
+        }))
         return response
       } else {
         response.res = 'bad password'
