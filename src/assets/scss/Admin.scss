@@ -1,5 +1,5 @@
 
-.artist {
+.artists {
   position: relative;
   list-style: none;
   p, h3 {
@@ -7,5 +7,24 @@
   }
   h3 {
     margin: 0 0 1.5rem 0;
+  }
+  .artist {
+    list-style: none;
+    border: solid 1px #000;
+    padding: 2rem;
+    .cross {
+      // &:hover {
+      //   transform: rotate(45deg);
+      //   transition: all .3s linear;
+      // }
+    }
+    .artist-content {
+      h3 {
+
+      }
+      p {
+
+      }
+    }
   }
 }

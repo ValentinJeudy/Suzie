@@ -1,5 +1,6 @@
 .artist {
   text-align: right;
+  position: relative;
 }
 .cross {
   position: absolute;
@@ -9,13 +10,20 @@
   right: 0.5rem;
   width: 1rem;
   height: 1rem;
+  padding: .3rem;
   background: url('../../assets/cross.svg') no-repeat;
   background-position: center;
   background-size: 100%;
+  &:hover {
+    transform: rotate(360deg);
+    transition: all .5s linear;
+  }
 }
 .artist-content {
   text-align: center;
 }
 .open-form {
+  display: block;
   cursor: pointer;
+  text-align: center;
 }
