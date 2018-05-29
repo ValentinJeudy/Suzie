@@ -22,7 +22,7 @@
   // padding-top: 7rem;
   // height: calc(100vh - 7rem);
   // width: 100%;
-  // overflow: hidden;
+  overflow: hidden;
   // .background-container {
   //   position: fixed;
   //   z-index: -5;
@@ -57,7 +57,7 @@
       .background {
         animation: slideout 1s ease;
         // animation-timing-function: ease;
-        position: absolute;
+        position: fixed;
         width: 100%;
         top: 0;
         bottom: 0;

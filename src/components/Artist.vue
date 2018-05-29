@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <div class="artist">
-        <h1>{{ title }}</h1>
+        <h2>{{ artist.name }}</h2>
     </div>
   </div>
 </template>
@@ -11,10 +11,13 @@ export default {
   name: 'Artist',
   components: {
   },
-  data () {
-    return {
-      title: 'Welcome to your Artist Page'
-    }
+  props: ['artist'],
+  // data () {
+  //   return {
+  //   }
+  // },
+  mounted () {
+    console.log('this.artist ===> ', this.artist)
   }
 }
 </script>

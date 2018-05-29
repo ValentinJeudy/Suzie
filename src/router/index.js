@@ -23,9 +23,10 @@ export default new Router({
       component: Roster
     },
     {
-      path: '/artist',
+      path: '/roster/:name',
       name: 'Artist',
-      component: Artist
+      component: Artist,
+      props: true
     },
     {
       path: '/events',

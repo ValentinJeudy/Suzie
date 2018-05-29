@@ -2,7 +2,8 @@
   <div class="container">
     <ul>
       <li v-for="artist in artists">
-        <a v-on:mouseover="itemHover" href="">{{ artist.name }}</a>
+        <!-- <a v-on:mouseover="itemHover" href="">{{ artist.name }}</a> -->
+        <router-link v-on:mouseover="itemHover" :to="{ name: 'Artist', params: { name: artist.name, artist: artist }}">{{ artist.name }}</router-link>
         <div class="background">
           <img :src="artist.imgPath" />
         </div>
