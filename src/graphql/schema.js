@@ -10,6 +10,12 @@ const typeDefs = `
       imgPath: String
     }
 
+    type Event {
+      title: String!
+      description: String
+      imgPath: String
+    }
+
     type User {
       name: String!
       password: String!
@@ -47,6 +53,8 @@ const typeDefs = `
     type Query {
       artists: [Artist]    # "[]" means this is a list of artists
       artist(name: String!): Artist
+      events: [Event]
+      event(title: String!): Event
       users: [User]
       logUser(name: String!, password: String!): LogRes
     }

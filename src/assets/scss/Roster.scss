@@ -69,14 +69,16 @@
           min-height: 100%;
         }
       }
-      a {
-        display: block;
-        line-height: 7rem;
-        text-transform: uppercase;
-        font-size: 2.5rem;
-        color: yellow;
-        font-weight: bold;
-        transition: all .3s linear;
+      .link {
+        a {
+          display: block;
+          line-height: 7rem;
+          text-transform: uppercase;
+          font-size: 2.5rem;
+          color: yellow;
+          font-weight: bold;
+          transition: all .3s linear;
+        }
       }
       &.active {
         .background {

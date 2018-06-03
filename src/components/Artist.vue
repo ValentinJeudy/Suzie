@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="artist">
+      <img :src="artist.imgPath" alt="">
         <h2>{{ artist.name }}</h2>
+        <p>{{ artist.description }}</p>
     </div>
   </div>
 </template>

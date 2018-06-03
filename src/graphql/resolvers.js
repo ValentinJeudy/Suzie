@@ -1,5 +1,6 @@
 const ArtistModel = require('../mongoose/artist.js')
 const UserModel = require('../mongoose/user.js')
+const EventModel = require('../mongoose/event.js')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
 const express = require('express')
@@ -17,6 +18,9 @@ module.exports = {
   Query: {
     artists: (obj, args, context) => {
       return ArtistModel.find()
+    },
+    events: (obj, args, context) => {
+      return EventModel.find()
     },
     artist: (obj, args, context) => {
       const res = ArtistModel.findOne({ name: args.name })

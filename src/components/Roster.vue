@@ -3,7 +3,9 @@
     <ul>
       <li v-for="artist in artists">
         <!-- <a v-on:mouseover="itemHover" href="">{{ artist.name }}</a> -->
-        <router-link v-on:mouseover="itemHover" :to="{ name: 'Artist', params: { name: artist.name, artist: artist }}">{{ artist.name }}</router-link>
+        <div v-on:mouseover="itemHover" class="link">
+          <router-link :to="{ name: 'Artist', params: { name: artist.name, artist: artist }}">{{ artist.name }}</router-link>
+        </div>
         <div class="background">
           <img :src="artist.imgPath" />
         </div>
@@ -31,9 +33,8 @@ export default {
           imgPath
         }
       }`,
-      result (artists) {
-        this.artists = artists.data.artists
-        // console.log(this.artists)
+      result (res) {
+        this.artists = res.data.artists
       }
       // variables () {
       //   return {
@@ -102,7 +103,7 @@ export default {
         // console.log('item.classList => ', item)
         item.classList.remove('active')
       })
-      event.target.parentElement.classList.add('active')
+      event.target.parentElement.parentElement.classList.add('active')
       // this.addClass('active')
     }
   }
