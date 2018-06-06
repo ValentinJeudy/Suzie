@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header id="header">
     <router-link to="/">
       <img src="../assets/suzie-logo.svg" alt="">
     </router-link>
