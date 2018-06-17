@@ -35,7 +35,7 @@ export default {
 
       window.onbeforeunload = console.log('=============> gniiaaaaa <================')
 
-      setInterval(() => {
+      this.slideInterval = setInterval(() => {
         // Reset classes
         Array.prototype.forEach.call(slides, s => {
           s.classList.remove('previous')
@@ -75,11 +75,10 @@ export default {
         }
       }, 4000)
     }
-
     homeSlide()
   },
   destroyed () {
-    console.log('=============> HOME DESTROYED LOL <================')
+    clearInterval(this.slideInterval)
   }
 }
 </script>

@@ -1,0 +1,74 @@
+@import './global.scss';
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.event {
+  position: relative;
+  list-style: none;
+  width: 25rem;
+  margin: 2rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+  h3 {
+    margin: .5rem 0 1rem 0;
+    color: $yellow;
+  }
+  .img {
+    height: 10rem;
+    background-size: 100%;
+    background-position: center;
+    // background: red;
+    img {
+      width: 100%;
+    }
+  }
+  .link {
+    text-align: right;
+    padding-bottom: .7rem;
+    a, span {
+      color: $yellow;
+      position: relative;
+      text-align: right;
+      &:before {
+        content: '>>';
+        position: absolute;
+        left: -2rem;
+        transition: all .3s;
+      }
+    }
+  }
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: .3rem;
+    background: $yellow;
+    transition: all linear .2s;
+  }
+  &:before {
+    top: -.3rem;
+    left: 0;
+  }
+  &:after {
+    bottom: -.3rem;
+    right: 0;
+  }
+  &:hover {
+    &:before,
+    &:after {
+      width: 100%;
+    }
+    .link {
+      & {
+        span:before {
+          left: -1.5rem;
+        }
+      }
+    }
+  }
+}

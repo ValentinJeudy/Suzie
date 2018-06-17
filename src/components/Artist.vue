@@ -1,35 +1,23 @@
 <template>
   <div class="container">
-    <div v-bind:style="bgArtist" class="artist-img">
-      <div @click="scrollFromTop" class="btn-scroll">
-        <svg>
-          <use xlink:href='src/assets/img/002-drag.svg#drag'></use>
-        </svg>
+      <div v-bind:style="bgArtist" class="artist-img">
+        <h1>{{ artist.name }}</h1>
+        <div @click="scrollFromTop" class="btn-scroll">
+          <svg>
+            <use xlink:href='src/assets/img/002-drag.svg#drag'></use>
+          </svg>
+        </div>
       </div>
-    </div>
-    <div class="artist-container">
-      <h2>{{ artist.name }}</h2>
-      <p>{{ artist.description }}</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
-      <p>Lorem ipsum data stuff lol</p>
+    <div class="content">
+      <div class="artist-container">
+        <p>{{ artist.description }}</p>
+        <p>Lorem ipsum data stuff lol</p>
+        <p>Lorem ipsum data stuff lol</p>
+        <p>Lorem ipsum data stuff lol</p>
+        <p>Lorem ipsum data stuff lol</p>
+        <p>Lorem ipsum data stuff lol</p>
+        <p>Lorem ipsum data stuff lol</p>
+      </div>
     </div>
   </div>
 </template>
@@ -61,8 +49,6 @@ export default {
         behavior: 'smooth'
       })
 
-      console.log('headerHeight ===> ', headerHeight)
-      console.log('windowHeightt ===> ', windowHeight)
       console.log('window ===> ', window)
     }
   }

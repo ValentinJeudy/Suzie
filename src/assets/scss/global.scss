@@ -9,6 +9,10 @@ $md: 960px !default;
 $lg: 1280px !default;
 $xl: 1920px !default;
 
+// Colors
+
+$yellow: #f1c40f;
+
 
 @mixin breakpoint($width, $direction: up) {
   $nextBreakpoint: 9999px;

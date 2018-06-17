@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="drag" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512; background: #F1C40F" xml:space="preserve">
+	 viewBox="0 0 512 512" fill="#fff" style="enable-background:new 0 0 512 512" xml:space="preserve">
 <g>
 	<g>
 		<path d="M512,298.667V0H213.333v268.497L42.667,439.163v-76.497c0-11.782-9.551-21.333-21.333-21.333
@@ -18,35 +18,5 @@
 			c0.7,0.069,1.402,0.106,2.104,0.106c0,0,0.001,0,0.001,0h128c11.782,0,21.333-9.551,21.333-21.333s-9.551-21.333-21.333-21.333
 			H72.837l170.667-170.667H512z M256,42.667h213.333V256H256V42.667z"/>
 	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
 </g>
 </svg>

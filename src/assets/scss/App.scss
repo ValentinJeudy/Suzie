@@ -18,11 +18,19 @@ ul {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   .container {
-    // display: flex;
-    // flex-direction: row;
+    background: #000;
+    color: #FFF;
     padding-top: 7rem;
     height: calc(100vh - 7rem);
     width: 100%;
+    .content {
+      width: 80%;
+      padding: 3rem 10% 0 10%;
+      background: #000;
+    }
+    a {
+      color: $yellow;
+    }
   }
 
   .flex {

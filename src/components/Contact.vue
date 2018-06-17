@@ -1,7 +1,16 @@
 <template>
-  <div>
-    <div class="Contact">
-        <h1>{{ title }}</h1>
+  <div class="container">
+    <div class="content">
+      <div class="form">
+        <h2>Booking</h2>
+        <form action="">
+
+        </form>
+      </div>
+      <div class="form">
+        <h2>Management</h2>
+        <form action=""></form>
+      </div>
     </div>
   </div>
 </template>
