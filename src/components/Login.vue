@@ -1,15 +1,13 @@
 <template>
-  <div class="container">
-    <div class="Artist">
-        <h1>Log to your Backoffice !!</h1>
-        <form v-on:submit.prevent="login(form)">
-          <label for="">ID :</label>
-          <input v-model="form.name" type="text">
-          <label for="">Password :</label>
-          <input v-model="form.password" type="text">
-          <button Submit>Go on ==></button>
-        </form>
-    </div>
+  <div class="container full">
+      <h1>Fill Your Roster Of Talents !</h1>
+      <form v-on:submit.prevent="login(form)">
+        <label for="">ID :</label>
+        <input v-model="form.name" type="text">
+        <label for="">Password :</label>
+        <input v-model="form.password" type="text">
+        <button Submit>Go on ==></button>
+      </form>
   </div>
 </template>
 

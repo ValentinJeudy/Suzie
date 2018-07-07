@@ -21,8 +21,10 @@ ul {
     background: #000;
     color: #FFF;
     padding-top: 7rem;
-    height: calc(100vh - 7rem);
     width: 100%;
+    &.full {
+      height: calc(100vh - 7rem);
+    }
     .content {
       width: 80%;
       padding: 3rem 10% 0 10%;
@@ -59,7 +61,7 @@ ul {
   }
 
   form {
-    margin: 1.5rem 0;
+    // margin: 1.5rem 0;
     padding: 0 4rem;
     text-align: left;
     label {
@@ -67,8 +69,13 @@ ul {
     }
     input, textarea {
       display: block;
-      width: 100%;
-      margin: 1.5rem auto;
+      width: calc(100% - 14px);
+      padding-left: 10px;
+      margin: .5rem 0 1.5rem 0;
+      outline: none;
+      &:focus {
+        outline: $yellow solid 2px;
+      }
     }
     input {
       height: 2rem;

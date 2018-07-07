@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container full">
     <ul>
       <li v-for="artist in artists">
         <!-- <a v-on:mouseover="itemHover" href="">{{ artist.name }}</a> -->

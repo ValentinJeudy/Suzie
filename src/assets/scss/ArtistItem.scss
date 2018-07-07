@@ -6,17 +6,17 @@
   position: absolute;
   cursor: pointer;
   display: block;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 1rem;
-  height: 1rem;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: .8rem;
+  height: .8rem;
   padding: .3rem;
   background: url('../../assets/cross.svg') no-repeat;
   background-position: center;
   background-size: 100%;
+  transition: all .1s linear;
   &:hover {
-    transform: rotate(360deg);
-    transition: all .5s linear;
+    transform: rotate(45deg);
   }
 }
 .artist-content {

@@ -1,27 +1,25 @@
 <template>
-  <div class="container flex">
-    <div class="bloc">
-        <h1>YOU'RE LOGGED MOFO !!!</h1>
-        <div class="artists">
-          <ul>
-            <li
-              is="artist-item"
-              v-for="artist in artists"
-              :artist="artist"
-              class="artist">
-            </li>
-            <div class="add-artist">
-            <a @click="openFormArtist" class="btn">Add a new Artist</a>
-              <form v-if="artistFormOpened" v-on:submit.prevent="addNewArtist(newArtistForm)">
-                <label for="name">name :</label>
-                <input v-model="newArtistForm.name" name="name" type="text">
-                <label for="description">Description</label>
-                <textarea v-model="newArtistForm.description" name="description"></textarea>
-                <button Submit>Update</button>
-              </form>
-            </div>
-          </ul>
-        </div>
+  <div class="container">
+    <h1>YOU'RE LOGGED MOFO !!!</h1>
+    <div class="bloc artists">
+        <ul>
+          <li
+            is="artist-item"
+            v-for="artist in artists"
+            :artist="artist"
+            class="artist">
+          </li>
+          <div class="add-artist">
+          <a @click="openFormArtist" class="btn">Add a new Artist</a>
+            <form v-if="artistFormOpened" v-on:submit.prevent="addNewArtist(newArtistForm)">
+              <label for="name">name :</label>
+              <input v-model="newArtistForm.name" name="name" type="text">
+              <label for="description">Description</label>
+              <textarea v-model="newArtistForm.description" name="description"></textarea>
+              <button Submit>Update</button>
+            </form>
+          </div>
+        </ul>
     </div>
     <div class="bloc events">
       <h2>My events</h2>

@@ -1,17 +1,17 @@
 <template>
-  <div class='container'>
-    <ul id='slider' class='slider'>
-      <li class='slide active'>
-        <div class='slide-back'></div>
-        <div class='slide-front'></div>
+  <div class="container full">
+    <ul id="slider" class="slider">
+      <li class="slide active">
+        <div class="slide-back"></div>
+        <div class="slide-front"></div>
       </li>
-      <li class='slide next'>
-        <div class='slide-back'></div>
-        <div class='slide-front'></div>
+      <li class="slide next">
+        <div class="slide-back"></div>
+        <div class="slide-front"></div>
       </li>
-      <li class='slide previous'>
-        <div class='slide-back'></div>
-        <div class='slide-front'></div>
+      <li class="slide previous">
+        <div class="slide-back"></div>
+        <div class="slide-front"></div>
       </li>
     </ul>
   </div>
