@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>YOU'RE LOGGED MOFO !!!</h1>
+    <h1>Welcome to your admin space !!</h1>
     <div class="bloc artists">
         <ul>
           <li

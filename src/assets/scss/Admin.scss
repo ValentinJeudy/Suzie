@@ -6,6 +6,8 @@ h1 {
       // outline: $yellow solid 2px;
 .container {
   height: auto;
+  position: relative;
+  // z-index: -2;
 }
 .artists {
   position: relative;
@@ -17,30 +19,30 @@ h1 {
     margin: 0 0 1.5rem 0;
   }
   .artist {
-    background: #fff;
+    background: #000;
     position: relative;
     list-style: none;
     padding: 2rem;
     margin: 0 0 2rem 0;
-    opacity: .99;
     &:before,
     &:after {
       content: '';
       display: block;
       position: absolute;
-      width: 3rem;
-      height: 3rem;
-      background: $yellow;
-      opacity: 1;
-      z-index: -1;
     }
     &:before {
-      top: -1.5rem;
-      left: -1.5rem;
+      top: -.6rem;
+      left: -.6rem;
+      background: $yellow;
+      width: 3rem;
+      height: 3rem;
     }
     &:after {
-      bottom: -1.5rem;
-      right: -1.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      top: 0;
+      left: 0;
+      background: #000;
     }
     .artist-content {
       h3 {

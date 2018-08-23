@@ -5,12 +5,14 @@
       <h3>{{ artist.name }}</h3>
       <p>{{ artist.description }}</p>
     </div>
-    <span class="open-form" @click="modify()">modify</span>
+    <span class="open-form" @click="modify">modify</span>
     <form v-if="formOpened" v-on:submit.prevent="updateArtist(form)">
-      <label for="name">name :</label>
+      <label for="name">New name :</label>
       <input v-model="form.name" name="name" type="text">
-      <label for="description">Description</label>
+      <label for="description">New description</label>
       <textarea v-model="form.description" name="description"></textarea>
+      <label for="upload">Upload image :</label>
+      <input @change="test" type="file" name="upload">
       <button Submit>Update</button>
     </form>
   </li>
@@ -34,6 +36,9 @@ export default {
   },
   props: ['artist'],
   methods: {
+    modify () {
+      this.formOpened = !this.formOpened
+    },
     deleteArtist (name) {
       this.$apollo.mutate({
         mutation: gql`mutation deleteArtist($input: FindArtistInput!){
@@ -56,46 +61,47 @@ export default {
         // }
       })
     },
-    modify () {
-      this.formOpened ? this.formOpened = false : this.formOpened = true
-    },
     updateArtist (form) {
-      this.$apollo.mutate({
-        mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
-          updateArtist(input: $input){
-            name
-            description
-          }
-        }`,
-        variables: {
-          input: {
-            artist: {
-              name: this.artist.name
-            },
-            newArtist: {
-              name: form.name,
-              description: form.description
-            }
-          }
-        },
-        update: (store) => {
-          console.log('store ===> ', form)
-          const data = store.data.data
-          for (const artist in data) {
-            if (artist.includes('ROOT_QUERY.artists')) {
-              console.log('artist ===> ', data[artist])
-              data[artist].name = form.name
-              data[artist].description = form.description
-              console.log('newArtist ===> ', data[artist])
-            }
-          }
-          // // console.log('store ===> ', store.data.data['ROOT_QUERY.artists'])
-        }
-      }).then(data => {
-        console.log('data ===> ', data)
-      }).catch((err) => {
-        console.error(err)
-      })
+      console.log('form ===> ', form)
+      // this.$apollo.mutate({
+      //   mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
+      //     updateArtist(input: $input){
+      //       name
+      //       description
+      //     }
+      //   }`,
+      //   variables: {
+      //     input: {
+      //       artist: {
+      //         name: this.artist.name
+      //       },
+      //       newArtist: {
+      //         name: form.name,
+      //         description: form.description
+      //       }
+      //     }
+      //   },
+      //   update: (store) => {
+      //     console.log('store ===> ', form)
+      //     const data = store.data.data
+      //     for (const artist in data) {
+      //       if (artist.includes('ROOT_QUERY.artists')) {
+      //         console.log('artist ===> ', data[artist])
+      //         data[artist].name = form.name
+      //         data[artist].description = form.description
+      //         console.log('newArtist ===> ', data[artist])
+      //       }
+      //     }
+      //     // // console.log('store ===> ', store.data.data['ROOT_QUERY.artists'])
+      //   }
+      // }).then(data => {
+      //   console.log('data ===> ', data)
+      // }).catch((err) => {
+      //   console.error(err)
+      // })
+    },
+    test (item) {
+      console.log('item ===> ', item)
     }
   },
   mounted () {
