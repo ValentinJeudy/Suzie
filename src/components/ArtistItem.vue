@@ -11,8 +11,11 @@
       <input v-model="form.name" name="name" type="text">
       <label for="description">New description</label>
       <textarea v-model="form.description" name="description"></textarea>
-      <label for="upload">Upload image :</label>
-      <input @change="test" type="file" name="upload">
+      <div class="upload-file">
+        <label for="upload">Upload image :</label>
+        <input type="file" name="image" @change="fileChange($event.target.name, $event.target.files)" accept="image/*" class="input-file">
+        <p>Here to upload image !</p>
+        </div>
       <button Submit>Update</button>
     </form>
   </li>
@@ -20,6 +23,7 @@
 
 <script>
 import gql from 'graphql-tag'
+import uploadService from '../assets/lib/uploadService'
 
 export default {
   name: 'ArtistItem',
@@ -29,7 +33,8 @@ export default {
     return {
       form: {
         name: '',
-        description: ''
+        description: '',
+        image: {}
       },
       formOpened: false
     }
@@ -63,6 +68,7 @@ export default {
     },
     updateArtist (form) {
       console.log('form ===> ', form)
+      console.log('uploadService ===> ', uploadService)
       // this.$apollo.mutate({
       //   mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
       //     updateArtist(input: $input){
@@ -100,8 +106,12 @@ export default {
       //   console.error(err)
       // })
     },
-    test (item) {
-      console.log('item ===> ', item)
+    fileChange (name, file) {
+      if (!file.length) {
+        return
+      }
+      const [fileToUpload] = file
+      this.form.image = fileToUpload
     }
   },
   mounted () {

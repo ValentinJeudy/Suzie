@@ -26,4 +26,12 @@
   display: block;
   cursor: pointer;
   text-align: center;
+  .upload-file {
+    .input-file {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 3rem;
+    }
+  }
 }
