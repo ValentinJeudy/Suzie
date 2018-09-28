@@ -1,8 +1,8 @@
 module.exports = {
-  extends: [
-    "plugin:vue-libs/recommended"
-  ],
+  root: true,
+  extends: ['plugin:vue/essential', 'standard'],
   rules: {
-    "vue/html-no-self-closing": 0
+    'vue/html-no-self-closing': 0,
+    'arrow-parens': 1
   }
 }
