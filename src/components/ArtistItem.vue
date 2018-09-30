@@ -139,25 +139,19 @@ export default {
       //   console.error(err)
       // })
     },
-    fileChange (name, file) {
-      if (!file.length) {
+    fileChange (name, files) {
+      if (!files.length) {
         return
       }
-      const [fileToUpload] = file
-      const blob = new Blob(fileToUpload, { type: fileToUpload.type })
 
-      // this.form.image = fileToUpload
-      // uploadService(fileToUpload)
+      const data = new FormData()
 
-      // new Blob(file, {type: 'image/png'})
+      data.append('image', ...files)
+
       axios({
         url: 'http://localhost:7000/upload',
         method: 'post',
-        data: blob
-        // headers: {
-        //   'Content-Type': 'multipart/form-data'
-        // 'Content-Type': 'application/json'
-        // }
+        data
       })
     }
   }

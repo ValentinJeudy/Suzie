@@ -6,6 +6,8 @@ const { graphqlExpress, graphiqlExpress } = require('graphql-server-express')
 const bodyParser = require('body-parser')
 const schema = require('./src/graphql/schema')
 const options = require('./config')
+const multer = require('multer')
+const upload = multer()
 
 // const session = require('express-session')
 // const MongoDBStore = require('connect-mongodb-session')(session)
@@ -63,20 +65,6 @@ Mongoose.connect(options.dev.BDD_URL, {}, () => {
 
 app.use(bodyParser.json())
 
-app.post('/upload', (req, res) => {
-  console.log(
-    'req ===> ',
-    require('util').inspect(req.body, { colors: true, depth: 0 })
-  )
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log('req ===> ', require('util').inspect(req.file, { colors: true, depth: 0 }))
 })
-
-app.use((req, res, next) => {
-  console.log('=============> IN APP USE <================')
-  next()
-})
-
-const toto = (lol) => {
-  return lol
-}
-
-toto()
