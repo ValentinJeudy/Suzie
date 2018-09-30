@@ -1,13 +1,17 @@
 <template>
   <div class="container full">
     <ul>
-      <li v-for="artist in artists">
+      <li
+        v-for="artist in artists"
+        :key="artist.name">
         <!-- <a v-on:mouseover="itemHover" href="">{{ artist.name }}</a> -->
-        <div v-on:mouseover="itemHover" class="link">
+        <div
+          class="link"
+          @mouseover="itemHover">
           <router-link :to="{ name: 'Artist', params: { name: artist.name, artist: artist }}">{{ artist.name }}</router-link>
         </div>
         <div class="background">
-          <img :src="artist.imgPath" />
+          <img :src="artist.imgPath" >
         </div>
       </li>
     </ul>
@@ -26,13 +30,15 @@ export default {
   },
   apollo: {
     artists: {
-      query: gql`{
-        artists {
-          name
-          description
-          imgPath
+      query: gql`
+        {
+          artists {
+            name
+            description
+            imgPath
+          }
         }
-      }`,
+      `,
       result (res) {
         this.artists = res.data.artists
       }
@@ -45,6 +51,7 @@ export default {
   },
   mounted () {
     console.log('this ===> ', this)
+
     // const listItems = document.querySelectorAll('.container ul li a')
     // const winHeight = window.innerHeight
     // const firstItem = listItems[4]

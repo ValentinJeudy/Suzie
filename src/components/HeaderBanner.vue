@@ -1,7 +1,9 @@
 <template>
   <header id="header">
     <router-link to="/">
-      <img src="../assets/suzie-logo.svg" alt="">
+      <img
+        src="../assets/suzie-logo.svg"
+        alt="logo">
     </router-link>
     <menu type="context">
       <ul>

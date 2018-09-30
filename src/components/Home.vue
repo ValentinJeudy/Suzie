@@ -1,17 +1,19 @@
 <template>
   <div class="container full">
-    <ul id="slider" class="slider">
+    <ul
+      id="slider"
+      class="slider">
       <li class="slide active">
-        <div class="slide-back"></div>
-        <div class="slide-front"></div>
+        <div class="slide-back"/>
+        <div class="slide-front"/>
       </li>
       <li class="slide next">
-        <div class="slide-back"></div>
-        <div class="slide-front"></div>
+        <div class="slide-back"/>
+        <div class="slide-front"/>
       </li>
       <li class="slide previous">
-        <div class="slide-back"></div>
-        <div class="slide-front"></div>
+        <div class="slide-back"/>
+        <div class="slide-front"/>
       </li>
     </ul>
   </div>
@@ -37,7 +39,7 @@ export default {
 
       this.slideInterval = setInterval(() => {
         // Reset classes
-        Array.prototype.forEach.call(slides, s => {
+        Array.prototype.forEach.call(slides, (s) => {
           s.classList.remove('previous')
           s.classList.remove('next')
         })

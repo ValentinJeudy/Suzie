@@ -1,11 +1,8 @@
 const express = require('express')
-const server = express()
+const app = express()
 const cors = require('cors')
 const Mongoose = require('mongoose')
-const {
-  graphqlExpress,
-  graphiqlExpress
-} = require('graphql-server-express')
+const { graphqlExpress, graphiqlExpress } = require('graphql-server-express')
 const bodyParser = require('body-parser')
 const schema = require('./src/graphql/schema')
 const options = require('./config')
@@ -14,7 +11,7 @@ const options = require('./config')
 // const MongoDBStore = require('connect-mongodb-session')(session)
 
 Mongoose.connect(options.dev.BDD_URL, {}, () => {
-  // server.use(session({
+  // app.use(session({
   //   secret: 'hum pk pas lol',
   //   store: new MongoDBStore({
   //     // uri: 'mongodb://localhost:27017',
@@ -29,7 +26,7 @@ Mongoose.connect(options.dev.BDD_URL, {}, () => {
   //   }
   // }))
 
-  // server.use(function (req, res, next) {
+  // app.use(function (req, res, next) {
   //   console.log('=============> IN MIDDLEWARE <================')
   //   console.log('req ===> ', require('util').inspect(req, { colors: true, depth: 0 }))
 
@@ -37,23 +34,49 @@ Mongoose.connect(options.dev.BDD_URL, {}, () => {
   // })
 
   // Restrict the client-origin for security reasons.
-  server.use('*', cors({ origin: 'http://localhost:8080' }))
+  app.use('*', cors({ origin: 'http://localhost:8080' }))
 
-  server.use('/graphql', bodyParser.json(), graphqlExpress({
-    // connect: { mongo },
-    schema
-  }))
+  app.use(
+    '/graphql',
+    bodyParser.json(),
+    graphqlExpress({
+      // connect: { mongo },
+      schema
+    })
+  )
 
-  server.use('/graphiql', graphiqlExpress({
-    endpointURL: '/graphql'
-  }))
+  app.use(
+    '/graphiql',
+    graphiqlExpress({
+      endpointURL: '/graphql'
+    })
+  )
 
-  server.listen(options.dev.SERVER_PORT, () =>
-    console.log(`GraphQL Server is now running on http://localhost:${options.dev.SERVER_PORT}`)
+  app.listen(options.dev.SERVER_PORT, () =>
+    console.log(
+      `GraphQL server is now running on http://localhost:${
+        options.dev.SERVER_PORT
+      }`
+    )
   )
 })
 
-server.use((req, res, next) => {
+app.use(bodyParser.json())
+
+app.post('/upload', (req, res) => {
+  console.log(
+    'req ===> ',
+    require('util').inspect(req.body, { colors: true, depth: 0 })
+  )
+})
+
+app.use((req, res, next) => {
   console.log('=============> IN APP USE <================')
   next()
 })
+
+const toto = (lol) => {
+  return lol
+}
+
+toto()

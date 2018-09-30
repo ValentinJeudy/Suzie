@@ -2,8 +2,13 @@
   <div class="container">
     <div class="content">
       <ul>
-        <li class="event" v-for="event in events">
-          <div class="img" v-bind:style="{backgroundImage: `url(${event.imgPath})`}">
+        <li
+          v-for="event in events"
+          :key="event.name"
+          class="event">
+          <div
+            :style="{backgroundImage: `url(${event.imgPath})`}"
+            class="img">
             <!-- <img v-if="event.imgPath" :src="event.imgPath" alt=""> -->
           </div>
           <h3>{{ event.title }}</h3>

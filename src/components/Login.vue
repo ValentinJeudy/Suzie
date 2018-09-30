@@ -1,13 +1,17 @@
 <template>
   <div class="container full">
-      <h1>Fill Your Roster Of Talents !</h1>
-      <form v-on:submit.prevent="login(form)">
-        <label for="">ID :</label>
-        <input v-model="form.name" type="text">
-        <label for="">Password :</label>
-        <input v-model="form.password" type="text">
-        <button Submit>Go on ==></button>
-      </form>
+    <h1>Fill Your Roster Of Talents !</h1>
+    <form @submit.prevent="login(form)">
+      <label for="">ID :</label>
+      <input
+        v-model="form.name"
+        type="text">
+      <label for="">Password :</label>
+      <input
+        v-model="form.password"
+        type="text">
+      <button Submit>Go on ==></button>
+    </form>
   </div>
 </template>
 
@@ -41,7 +45,7 @@ export default {
           name: form.name,
           password: form.password
         }
-      }).then(response => {
+      }).then((response) => {
         console.log('response ===> ', response)
         const res = response.data.logUser.res
 

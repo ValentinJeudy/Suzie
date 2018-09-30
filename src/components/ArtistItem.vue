@@ -1,21 +1,37 @@
 <template>
   <li class="artist">
-    <span @click="deleteArtist(artist.name)" class="cross"></span>
+    <span
+      class="cross"
+      @click="deleteArtist(artist.name)"/>
     <div class="artist-content">
       <h3>{{ artist.name }}</h3>
       <p>{{ artist.description }}</p>
     </div>
-    <span class="open-form" @click="modify">modify</span>
-    <form v-if="formOpened" v-on:submit.prevent="updateArtist(form)">
+    <span
+      class="open-form"
+      @click="modify">modify</span>
+    <form
+      v-if="formOpened"
+      @submit.prevent="updateArtist(form)">
       <label for="name">New name :</label>
-      <input v-model="form.name" name="name" type="text">
+      <input
+        v-model="form.name"
+        name="name"
+        type="text">
       <label for="description">New description</label>
-      <textarea v-model="form.description" name="description"></textarea>
+      <textarea
+        v-model="form.description"
+        name="description"/>
       <div class="upload-file">
         <label for="upload">Upload image :</label>
-        <input type="file" name="image" @change="fileChange($event.target.name, $event.target.files)" accept="image/*" class="input-file">
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          class="input-file"
+          @change="fileChange($event.target.name, $event.target.files)">
         <p>Here to upload image !</p>
-        </div>
+      </div>
       <button Submit>Update</button>
     </form>
   </li>
@@ -23,11 +39,26 @@
 
 <script>
 import gql from 'graphql-tag'
-import uploadService from '../assets/lib/uploadService'
+// import uploadService from '../assets/lib/uploadService'
+import axios from 'axios'
 
 export default {
   name: 'ArtistItem',
-  components: {
+  components: {},
+  props: {
+    artist: {
+      type: Object,
+      name: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+      imgPath: String,
+      required: true
+    }
   },
   data () {
     return {
@@ -39,36 +70,38 @@ export default {
       formOpened: false
     }
   },
-  props: ['artist'],
+  mounted () {},
   methods: {
     modify () {
       this.formOpened = !this.formOpened
     },
     deleteArtist (name) {
-      this.$apollo.mutate({
-        mutation: gql`mutation deleteArtist($input: FindArtistInput!){
-          deleteArtist(input: $input){
-            res
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation deleteArtist($input: FindArtistInput!) {
+              deleteArtist(input: $input) {
+                res
+              }
+            }
+          `,
+          variables: {
+            input: {
+              name: name
+            }
           }
-        }`,
-        variables: {
-          input: {
-            name: name
-          }
-        }
-      }).then(response => {
-        console.log('response ===> ', response)
-        console.log('name deleted => ', name)
-        // if (res === 'logged') {
-        //   this.$router.push('/admin')
-        // } else if (res === 'bad user') {
-        //   this.userError = true
-        // }
-      })
+        })
+        .then((response) => {
+          console.log('response ===> ', response)
+          console.log('name deleted => ', name)
+          // if (res === 'logged') {
+          //   this.$router.push('/admin')
+          // } else if (res === 'bad user') {
+          //   this.userError = true
+          // }
+        })
     },
     updateArtist (form) {
-      console.log('form ===> ', form)
-      console.log('uploadService ===> ', uploadService)
       // this.$apollo.mutate({
       //   mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
       //     updateArtist(input: $input){
@@ -111,10 +144,22 @@ export default {
         return
       }
       const [fileToUpload] = file
-      this.form.image = fileToUpload
+      const blob = new Blob(fileToUpload, { type: fileToUpload.type })
+
+      // this.form.image = fileToUpload
+      // uploadService(fileToUpload)
+
+      // new Blob(file, {type: 'image/png'})
+      axios({
+        url: 'http://localhost:7000/upload',
+        method: 'post',
+        data: blob
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'application/json'
+        // }
+      })
     }
-  },
-  mounted () {
   }
 }
 </script>

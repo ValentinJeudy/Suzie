@@ -1,13 +1,17 @@
 <template>
   <div class="container">
-      <div v-bind:style="bgArtist" class="artist-img">
-        <h1>{{ artist.name }}</h1>
-        <div @click="scrollFromTop" class="btn-scroll">
-          <svg>
-            <use xlink:href='src/assets/img/002-drag.svg#drag'></use>
-          </svg>
-        </div>
+    <div
+      :style="bgArtist"
+      class="artist-img">
+      <h1>{{ artist.name }}</h1>
+      <div
+        class="btn-scroll"
+        @click="scrollFromTop">
+        <svg>
+          <use xlink:href="src/assets/img/002-drag.svg#drag"/>
+        </svg>
       </div>
+    </div>
     <div class="content">
       <div class="artist-container">
         <p>{{ artist.description }}</p>
@@ -27,7 +31,21 @@ export default {
   name: 'Artist',
   components: {
   },
-  props: ['artist'],
+  props: {
+    artist: {
+      type: Object,
+      name: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+      imgPath: String,
+      required: true
+    }
+  },
   data () {
     return {
       bgArtist: {

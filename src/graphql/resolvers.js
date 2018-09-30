@@ -46,19 +46,21 @@ module.exports = {
         console.log('=============> BEFORE APP USE <================')
 
         console.log('=============> YOU ARE LOGGED <================')
-        app.use(session({
-          secret: 'hum pk pas lol',
-          store: new MongoDBStore({
-            uri: options.dev.BDD_URL,
-            databaseName: 'suzie',
-            collection: 'sessions'
-          }),
-          resave: false,
-          saveUninitialized: true,
-          cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
-          }
-        }))
+        app.use(
+          session({
+            secret: 'hum pk pas lol',
+            store: new MongoDBStore({
+              uri: options.dev.BDD_URL,
+              databaseName: 'suzie',
+              collection: 'sessions'
+            }),
+            resave: false,
+            saveUninitialized: true,
+            cookie: {
+              maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+            }
+          })
+        )
         return response
       } else {
         response.res = 'bad password'
@@ -79,8 +81,14 @@ module.exports = {
       })
     },
     addArtist: (obj, args) => {
-      const newArtist = { name: args.input.name, description: args.input.description }
-      console.log('newArtist ===> ', require('util').inspect(newArtist, { colors: true, depth: 2 }))
+      const newArtist = {
+        name: args.input.name,
+        description: args.input.description
+      }
+      console.log(
+        'newArtist ===> ',
+        require('util').inspect(newArtist, { colors: true, depth: 2 })
+      )
       return ArtistModel.create(newArtist)
     },
     deleteArtist: (obj, args) => {

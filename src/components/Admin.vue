@@ -2,24 +2,33 @@
   <div class="container">
     <h1>Welcome to your admin space !!</h1>
     <div class="bloc artists">
-        <ul>
-          <li
-            is="artist-item"
-            v-for="artist in artists"
-            :artist="artist"
-            class="artist">
-          </li>
-          <div class="add-artist">
-          <a @click="openFormArtist" class="btn">Add a new Artist</a>
-            <form v-if="artistFormOpened" v-on:submit.prevent="addNewArtist(newArtistForm)">
-              <label for="name">name :</label>
-              <input v-model="newArtistForm.name" name="name" type="text">
-              <label for="description">Description</label>
-              <textarea v-model="newArtistForm.description" name="description"></textarea>
-              <button Submit>Update</button>
-            </form>
-          </div>
-        </ul>
+      <ul>
+        <li
+          is="artist-item"
+          v-for="artist in artists"
+          :artist="artist"
+          :key="artist.name"
+          class="artist"/>
+        <div class="add-artist">
+          <a
+            class="btn"
+            @click="openFormArtist">Add a new Artist</a>
+          <form
+            v-if="artistFormOpened"
+            @submit.prevent="addNewArtist(newArtistForm)">
+            <label for="name">name :</label>
+            <input
+              v-model="newArtistForm.name"
+              name="name"
+              type="text">
+            <label for="description">Description</label>
+            <textarea
+              v-model="newArtistForm.description"
+              name="description"/>
+            <button Submit>Update</button>
+          </form>
+        </div>
+      </ul>
     </div>
     <div class="bloc events">
       <h2>My events</h2>
@@ -36,6 +45,21 @@ export default {
   components: {
     ArtistItem
   },
+  props: {
+    artist: {
+      type: Object,
+      name: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+      imgPath: String,
+      required: true
+    }
+  },
   data () {
     return {
       newArtistForm: {
@@ -45,7 +69,6 @@ export default {
       artistFormOpened: false
     }
   },
-  props: ['artist'],
   apollo: {
     artists: {
       query: gql`{
@@ -70,9 +93,12 @@ export default {
       // }
     }
   },
+  mounted () {
+    console.log('this.artist ===> ', this.artist)
+  },
   methods: {
     modify () {
-      console.log('this ===> ', this)
+      // console.log('this ===> ', this)
     },
     addNewArtist (form) {
       console.log(form)
@@ -88,7 +114,7 @@ export default {
             name: form.name
           }
         }
-      }).then(response => {
+      }).then((response) => {
         console.log('response ===> ', response)
       })
     },
