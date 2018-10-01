@@ -64,8 +64,9 @@ export default {
     return {
       form: {
         name: '',
-        description: '',
-        image: {}
+        Path: '',
+        image: '',
+        fileToUpload: {}
       },
       formOpened: false
     }
@@ -102,6 +103,22 @@ export default {
         })
     },
     updateArtist (form) {
+      console.log('form ===> ', form)
+
+      if (!isEmpty(form.fileToUpload)) {
+        axios({
+          url: 'http://localhost:7000/upload',
+          method: 'post',
+          data
+        }).then((res) => {
+          if (res.status === 200) {
+            this.form.image = res.data
+          }
+        }).catch((err) => {
+          console.error('Error when uploading file : ', err)
+        })
+      }
+
       // this.$apollo.mutate({
       //   mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
       //     updateArtist(input: $input){
@@ -141,18 +158,14 @@ export default {
     },
     fileChange (name, files) {
       if (!files.length) {
+        this.form.fileToUpload = {}
         return
       }
 
       const data = new FormData()
-
       data.append('image', ...files)
 
-      axios({
-        url: 'http://localhost:7000/upload',
-        method: 'post',
-        data
-      })
+      this.form.fileToUpload = data
     }
   }
 }

@@ -8,6 +8,7 @@ const schema = require('./src/graphql/schema')
 const options = require('./config')
 const multer = require('multer')
 const upload = multer()
+const uploadService = require('./src/assets/lib/uploadService')
 
 // const session = require('express-session')
 // const MongoDBStore = require('connect-mongodb-session')(session)
@@ -54,17 +55,11 @@ Mongoose.connect(options.dev.BDD_URL, {}, () => {
     })
   )
 
-  app.listen(options.dev.SERVER_PORT, () =>
-    console.log(
-      `GraphQL server is now running on http://localhost:${
-        options.dev.SERVER_PORT
-      }`
-    )
-  )
-})
+  app.listen(options.dev.SERVER_PORT, () => {
+    console.log(`GraphQL server is now running on http://localhost:${options.dev.SERVER_PORT}`)
+  })
 
-app.use(bodyParser.json())
+  app.use(bodyParser.json())
 
-app.post('/upload', upload.single('image'), (req, res) => {
-  console.log('req ===> ', require('util').inspect(req.file, { colors: true, depth: 0 }))
+  app.post('/upload', upload.single('image'), (req, res) => uploadService(req, res))
 })
