@@ -81,14 +81,14 @@ module.exports = {
       })
     },
     addArtist: (obj, args) => {
+      const { name, description, imgPath } = args.input
       const newArtist = {
-        name: args.input.name,
-        description: args.input.description
+        name,
+        description,
+        imgPath
       }
-      console.log(
-        'newArtist ===> ',
-        require('util').inspect(newArtist, { colors: true, depth: 2 })
-      )
+      console.log('newArtist ===> ', require('util').inspect(newArtist, { colors: true, depth: 2 }))
+
       return ArtistModel.create(newArtist)
     },
     deleteArtist: (obj, args) => {
@@ -101,19 +101,17 @@ module.exports = {
       return { res: 'removed' }
     },
     updateArtist: async (obj, args) => {
-      const artist = { name: args.input.artist.name }
-      const newName = args.input.newArtist.name
-      const newDesc = args.input.newArtist.description
+      console.log('args.input ===> ', require('util').inspect(args.input, { colors: true, depth: 2 }))
+      const { name, description, imgPath } = args.input.newArtist
       const newArtist = {}
 
-      if (newName.length > 0) {
-        newArtist['name'] = newName
-      }
-      if (newDesc.length > 0) {
-        newArtist['description'] = newDesc
-      }
+      if (name.length > 0) { newArtist.name = name }
+      if (description.length > 0) { newArtist.description = description }
+      if (imgPath.length > 0) { newArtist.imgPath = imgPath }
 
-      await ArtistModel.findOneAndUpdate(artist, newArtist)
+      console.log('newArtist ===> ', newArtist)
+
+      await ArtistModel.findOneAndUpdate(args.input.artist, newArtist)
       return newArtist
     }
   }

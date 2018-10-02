@@ -64,8 +64,7 @@ export default {
     return {
       form: {
         name: '',
-        Path: '',
-        image: '',
+        imgPath: '',
         fileToUpload: {}
       },
       formOpened: false
@@ -102,59 +101,62 @@ export default {
           // }
         })
     },
-    updateArtist (form) {
-      console.log('form ===> ', form)
-
-      if (!isEmpty(form.fileToUpload)) {
-        axios({
+    async updateArtist (form) {
+      if (form.fileToUpload instanceof FormData) {
+        console.log('=============> NOT EMPTY FILE <================')
+        await axios({
           url: 'http://localhost:7000/upload',
           method: 'post',
-          data
+          data: form.fileToUpload
         }).then((res) => {
           if (res.status === 200) {
-            this.form.image = res.data
+            form.imgPath = res.data
           }
         }).catch((err) => {
           console.error('Error when uploading file : ', err)
         })
       }
 
-      // this.$apollo.mutate({
-      //   mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
-      //     updateArtist(input: $input){
-      //       name
-      //       description
-      //     }
-      //   }`,
-      //   variables: {
-      //     input: {
-      //       artist: {
-      //         name: this.artist.name
-      //       },
-      //       newArtist: {
-      //         name: form.name,
-      //         description: form.description
-      //       }
-      //     }
-      //   },
-      //   update: (store) => {
-      //     console.log('store ===> ', form)
-      //     const data = store.data.data
-      //     for (const artist in data) {
-      //       if (artist.includes('ROOT_QUERY.artists')) {
-      //         console.log('artist ===> ', data[artist])
-      //         data[artist].name = form.name
-      //         data[artist].description = form.description
-      //         console.log('newArtist ===> ', data[artist])
-      //       }
-      //     }
-      //     // // console.log('store ===> ', store.data.data['ROOT_QUERY.artists'])
-      //   }
-      // }).then(data => {
-      //   console.log('data ===> ', data)
-      // }).catch((err) => {
-      //   console.error(err)
-      // })
+      console.log('form.imgPath ===> ', form.imgPath)
+
+      this.$apollo.mutate({
+        mutation: gql`mutation updateArtist($input: UpdateArtistInput!){
+          updateArtist(input: $input){
+            name
+            description
+            imgPath
+          }
+        }`,
+        variables: {
+          input: {
+            artist: {
+              name: this.artist.name
+            },
+            newArtist: {
+              name: form.name,
+              description: form.description,
+              imgPath: form.imgPath
+            }
+          }
+        },
+        update: (store) => {
+          console.log('store ===> ', store)
+          const data = store.data.data
+          for (const artist in data) {
+            console.log('artist ===> ', artist)
+            if (artist.includes('ROOT_QUERY.artists')) {
+              data[artist].name = form.name
+              data[artist].description = form.description
+              data[artist].imgPath = this.form.imgPath
+            }
+          }
+          // // console.log('store ===> ', store.data.data['ROOT_QUERY.artists'])
+        }
+      }).then((data) => {
+        console.log('data ===> ', data)
+      }).catch((err) => {
+        console.error(err)
+      })
     },
     fileChange (name, files) {
       if (!files.length) {

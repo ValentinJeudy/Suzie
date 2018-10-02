@@ -29,6 +29,7 @@ const typeDefs = `
     input AddArtistInput {
       name: String
       description: String
+      imgPath: String
     }
 
     input AddUserInput {
